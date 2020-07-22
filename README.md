@@ -5,7 +5,8 @@
 ## 目錄
 1. [專案架構](#專案架構)
 2. [npm指令](#npm指令)
-3. [專案設定](#專案設定)  
+3. [專案設定](#專案設定)
+4. [線上文檔](#線上文檔)
 &nbsp;
 
 ## 專案架構
@@ -25,7 +26,7 @@
  ┃  ┣ 📂 js
  ┃  ┗ 📂 pug (頁面)            引入template用
  ┃    ┗ 📂 mixins (模版)       mixin無法被引入template !!
- ┣ 📂 store（狀態管理)          Vue組件之間的溝通管理
+ ┣ 📂 store（狀態管理)          組件之間的溝通管理；使用Vuex
  ┣ 📜 nuxt.config.js          專案設定
  ┗ 📜 package.json            專案資訊
 ```  
@@ -148,3 +149,15 @@ export default {
   }
 }
 ```
+&nbsp;
+
+## 線上文檔
+自己玩，更好玩 (๑•̀ㅂ•́)و✧
+
+* [Nuxt.js](https://nuxtjs.org/)
+* [Vue.js](https://vuejs.org/)
+* [BootstrapVue](https://bootstrap-vue.org/docs)
+* [nuxt-i18n](https://i18n.nuxtjs.org/) (設定語系)
+* [Vuex.js](https://vuex.vuejs.org/) (狀態管理)
+* [Webpack](https://webpack.js.org/guides/)
+* [Pug](https://pugjs.org/api/getting-started.html)
