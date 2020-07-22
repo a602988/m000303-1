@@ -1,19 +1,22 @@
 {
-  "name": "nuxt-sample",
+  "name": "vwin.com",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "export": "nuxt export",
-    "serve": "nuxt serve"
+    "serve": "nuxt serve",
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "bootstrap": "^4.5.0",
     "bootstrap-vue": "^2.15.0",
     "jquery": "^3.5.1",
     "nuxt": "^2.13.0",
+    "nuxt-i18n": "^6.13.1",
+    "popper.js": "^1.16.1",
+    "vue-i18n": "^8.18.2",
     "vuex": "^3.5.1"
   },
   "devDependencies": {

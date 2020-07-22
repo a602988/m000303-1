@@ -1,11 +1,18 @@
 // mixins
 
+// font family
+=font-family($lang)
+  font-family: $lang, 'Heiti TC', 'Microsoft Jhenghei', 'Helvetica Neue', 'Arial', sans-serif
+
 // --------------------
 // media query
 // --------------------
 
 // media query hover
 =media-hover
+  @media (hover: hover), (-ms-high-contrast: none)
+    @content
+=media-hover-style
   @media (hover: none)
     &:active
       @content

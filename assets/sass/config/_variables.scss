@@ -1,0 +1,11 @@
+// custom variables
+
+// colors
+$custom-color: (
+  main-blue: '#678AFC',
+  light-blue: '#94CEFC',
+);
+
+@function custom-color($color-name) {
+  @return map-get($custom-color, $color-name);
+}

@@ -1,0 +1,113 @@
+/* -------------------------------------------
+   header
+  ------------------------------------------ */
+
+.site-header
+  position: fixed
+  z-index: 1000
+  top: 0
+  left: 0
+  right: 0
+  .header-topbar
+    position: relative
+    +h-gradient(#4e65ff, #74E7FB 68%, #688ffc)
+    color: #ffffff
+    box-shadow: 0 3px 20px rgba(0,0,0,.1)
+    &::before
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      display: block
+      background-image: url('../images/project/header/header-bg.png')
+      mix-blend-mode: screen
+    .topbar-inner
+      position: relative
+      height: 80px
+    .topbar-links
+      .logo
+        width: 190px
+        a
+          display: block
+      .mainlinks
+        margin-left: 45px
+        [data-level="0"]
+          > li
+            + li
+              margin-left: 40px
+            > .ml-tt
+              font-size: 18px
+              // font-weight: 500
+              letter-spacing: 0.05em
+              .ml-tt-txt
+                display: block
+                +media-hover
+                  +transition-property(opacity)
+                +media-hover-style
+                  opacity: 0.75
+    .topbar-user
+      padding-right: 15px
+      .dropdown
+        .dropdown-menu
+          display: block
+          visibility: hidden
+          opacity: 0
+          border: none
+          box-shadow: 0 3.5px 27.5px rgba(0,0,0,.25)
+          font-size: 14px
+          +transition-property(visibility, opacity, margin)
+          +transition-duration(.3s)
+          +transition-timing-function(ease-in-out)
+        &.show
+          .dropdown-menu
+            visibility: visible
+            opacity: 1
+            margin-top: 20px
+      .user-actions
+        font-size: 18px
+        font-weight: 300
+        .list-item
+          + .list-item
+            &::before
+              content: ''
+              display: inline-block
+              width: 1px
+              height: 13px
+              margin: 0 15px
+              background-color: currentColor
+          a
+            +media-hover
+              +transition-property(opacity)
+            +media-hover-style
+              opacity: 0.75
+          .icon-inline
+            margin-right: 5px
+            vertical-align: 0
+            font-size: 20px
+      .user-lang
+        margin-left: 30px
+        .lang-flag
+          width: 25px
+          height: 25px
+          border-radius: 50%
+          overflow: hidden
+        .lang-toggle
+          &::after
+            content: ''
+            display: block
+            margin-left: 15px
+            border-top: 8px solid #ffffff
+            border-left: 5px solid transparent
+            border-right: 5px solid transparent
+        .lang-dropdown
+          width: 150px
+          .list-item
+            + .list-item
+              margin-top: 15px
+            a
+              +media-hover-style
+                color: #5678F7
+            .txt
+              margin-left: 10px

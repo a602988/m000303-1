@@ -16,15 +16,14 @@ export default {
   ** See https://nuxtjs.org/api/configuration-head
   */
   head: {
-    titleTemplate: '網站名稱 - %s',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
+      // { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap' }
     ],
   },
   /*
@@ -38,6 +37,10 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
+    {
+      src: '@/plugins/bootstrap.js',
+      ssr: false
+    }
   ],
   /*
   ** Auto import components
@@ -55,7 +58,8 @@ export default {
   modules: [
     // Doc: https://bootstrap-vue.js.org
     'bootstrap-vue/nuxt',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    'nuxt-i18n'
   ],
   bootstrapVue: {
     bootstrapCSS: false,
@@ -67,10 +71,24 @@ export default {
       'bootstrap/scss/_variables.scss',
       'bootstrap/scss/_mixins.scss',
       'bootstrap-vue/src/_variables.scss',
+      '@/assets/sass/config/*.scss'
     ],
     sass: [
       '@/assets/sass/config/*.sass'
     ]
+  },
+  i18n: {
+    locales: ['zh-Hant', 'zh-Hans', 'vi', 'th'],
+    defaultLocale: 'zh-Hant',
+    vueI18n: {
+      fallbackLocale: 'zh-Hant',
+      messages: {
+        'zh-Hant': require('./locales/zh-Hant.json'),
+        'zh-Hans': require('./locales/zh-Hans.json'),
+        'vi': require('./locales/vi.json'),
+        'th': require('./locales/th.json')
+      }
+    }
   },
   /*
   ** Build configuration

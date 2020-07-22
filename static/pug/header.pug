@@ -1,0 +1,60 @@
+include mixins/_config.pug
+
+//- mainlinks
+mixin mainlink(title, url)
+  li
+    .ml-tt.d-flex.align-items-center
+      n-link.ml-tt-txt(:to="localePath('" + url + "')")= title
+    if block
+      .ml-dd
+        block
+mixin mainlinks
+  ul(data-level="0").d-flex.align-items-center.list-unstyled
+    +mainlink("{{ $t('mainlinks.index') }}", '/')
+    +mainlink("{{ $t('mainlinks.sports') }}", 'sports')
+    +mainlink("{{ $t('mainlinks.live') }}", 'live')
+    +mainlink("{{ $t('mainlinks.lottery') }}", 'lottery')
+    +mainlink("{{ $t('mainlinks.slot') }}", 'slot')
+    +mainlink("{{ $t('mainlinks.fishing') }}", 'fishing')
+    +mainlink("{{ $t('mainlinks.chess') }}", 'chess')
+    +mainlink("{{ $t('mainlinks.agents') }}", 'agents')
+    +mainlink("{{ $t('mainlinks.events') }}", 'events')
+mixin langLink(langCode, langName)
+  li.list-item
+    n-link(:to="switchLocalePath('" + langCode + "')")
+      span.icon-inline
+        img.lang-flag(src=imgPj + "header/flags/" + langCode + ".png" alt="")
+      span.txt= langName
+
+//- site header
+header.site-header
+  .header-topbar
+    .topbar-inner.container.d-flex.justify-content-between
+      .topbar-links.d-flex.align-items-center
+        .logo
+          n-link(:to="localePath('/')")
+            img(src=imgPj+"logo.png" :title="webname" alt="")
+        nav.mainlinks
+          +mainlinks
+      .topbar-user.d-flex.align-items-center
+        .user-actions(v-if="!userLogin")
+          ul.d-flex.align-items-center.list-unstyled
+            li.list-item
+              n-link(:to="localePath('/login')")
+                span.icon-inline.icon-fs
+                  img.svg(src=imgSvg+"icon-personal.svg")
+                span.txt {{ $t('actions.login') }}
+            li.list-item
+              n-link(:to="localePath('/register')")
+                span.txt {{ $t('actions.register') }}
+        .user-logged(v-else)
+          .avatar
+        .user-lang.dropdown
+          button.btn.p-0.lang-toggle.dropdown-toggle.d-flex.align-items-center#lang-toggle(type="button" data-toggle="dropdown" aria-haspopup="true")
+            img.lang-flag(:src="require('" + imgPj + "header/flags/' + $i18n.locale + '.png')" alt="")
+          .lang-dropdown.dropdown-menu.dropdown-menu-right.p-4(aria-labelledby="lang-toggle")
+            ul.list-unstyled
+              +langLink('zh-Hant', '繁體中文')
+              +langLink('zh-Hans', '简体中文')
+              +langLink('vi', 'Tiếng Việt')
+              +langLink('th', 'ไทย')

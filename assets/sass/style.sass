@@ -1,16 +1,24 @@
 @charset 'utf-8'
 
 // -------------------------------------------
+//  config
+// -------------------------------------------
+
+@import 'config/_variables.scss'
+@import 'config/_mixins.sass'
+
+// -------------------------------------------
 //  modules
 // -------------------------------------------
     
 // bootstrap
+@import 'modules/_bootstrap-variables.scss'
 @import '~bootstrap/scss/bootstrap.scss'
 @import 'modules/_bootstrap-custom.sass'
 
 // -------------------------------------------
-//  config
+//  project
 // -------------------------------------------
 
-@import 'config/_variables.sass'
-@import 'config/_mixins.sass'
+@import 'projects/_basic.sass'
+@import 'projects/_layout.sass'

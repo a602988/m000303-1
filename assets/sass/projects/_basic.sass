@@ -1,0 +1,72 @@
+/* -------------------------------------------
+   basic
+  ------------------------------------------ */
+  
+html, body
+  +font-family('Noto Sans TC')
+  -ms-text-size-adjust: 100%
+  -webkit-text-size-adjust: 100%
+  -moz-osx-font-smoothing: grayscale
+  -webkit-font-smoothing: antialiased
+  &:lang(zh-Hans)
+    +font-family('Noto Sans SC')
+  
+a, a:hover, a:active, a:visited
+  color: inherit
+  text-decoration: none
+a
+  +media-hover
+    +transition-property(color)
+    +transition-duration(.3s)
+    +transition-timing-function(ease)
+
+img
+  max-width: 100%
+
+/* -------------------------------------------
+   common
+  ------------------------------------------ */
+
+// images
+.pic-block
+  img
+    display: block
+    width: 100%
+    height: auto
+.pic-fill
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+.hoverScale
+  display: block
+  overflow: hidden
+  &.abs
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+  +media-hover-only
+    .pic-block, .pic-fill
+      +scale(1.05)
+      +transition-duration(.75s)
+      +transition-delay(0s)
+
+// icons
+.icon-block
+  display: block
+  img, svg
+    display: block
+.icon-inline
+  display: inline-block
+  vertical-align: middle
+.icon-fs
+  svg
+    width: 1em
+    height: 1em
+img.svg
+  opacity: 0
+.replaced-svg
+  overflow: visible

@@ -1,0 +1,20 @@
+{
+  "website": {
+    "title": "m000303 - RYAN遊戲網"
+  },
+  "mainlinks": {
+    "index": "首頁",
+    "sports": "體育",
+    "live": "真人",
+    "lottery": "彩票",
+    "slot": "電子",
+    "fishing": "捕魚",
+    "chess": "棋牌",
+    "agents": "代理合作",
+    "events": "優惠活動"
+  },
+  "actions": {
+    "login": "登入",
+    "register": "註冊"
+  }
+}
