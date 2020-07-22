@@ -1,0 +1,27 @@
+{
+  "name": "nuxt-sample",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "export": "nuxt export",
+    "serve": "nuxt serve"
+  },
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "bootstrap-vue": "^2.15.0",
+    "jquery": "^3.5.1",
+    "nuxt": "^2.13.0",
+    "vuex": "^3.5.1"
+  },
+  "devDependencies": {
+    "@nuxtjs/style-resources": "^1.0.0",
+    "node-sass": "^4.14.1",
+    "pug": "^3.0.0",
+    "pug-html-loader": "^1.1.5",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^9.0.2"
+  }
+}

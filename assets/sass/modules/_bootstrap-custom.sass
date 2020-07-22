@@ -1,0 +1,52 @@
+// -------------------------------------------
+//  bootstrap custom
+// -------------------------------------------
+
+// mixins
+=min($query)
+  +media-breakpoint-up($query)
+    @content
+=max($query)
+  +media-breakpoint-down($query)
+    @content
+=mm($q1, $q2)
+  +media-breakpoint-between($q1, $q2)
+    @content
+=only($query)
+  +media-breakpoint-only($query)
+    @content
+
+// reset
+*, *:focus
+  outline: none
+img
+  border: none
+input, button, select, optgroup, textarea
+  border: none
+  border-radius: 0
+.btn
+  border: none
+  border-radius: 0
+  &:focus
+    box-shadow: none
+
+// container
+.container, [class*="container-"]
+  padding: 0
+  +media-breakpoint-up(xl)
+    max-width: 1600px
+.container-fw
+  +min(xl)
+    width: calc(100% - 120px)
+  +mm(md, lg)
+    width: calc(100% - 100px)
+  +max(sm)
+    width: calc(100% - 50px)
+  +max(xs)
+    width: calc(100% - 40px)
+
+// container padding  
+$cp-xl: 60px
+$cp-lg: 50px
+$cp-sm: 25px
+$cp-xs: 20px

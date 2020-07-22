@@ -1,0 +1,10 @@
+extends _config.pug
+include _layoutMixins.pug
+block layout
+  .wp(data-id="pageID" , data-page="pageName")
+    +header
+      block header
+    +main
+      block main
+    +footer
+      block footer

@@ -1,0 +1,14 @@
+extends ./layouts/mainLayout.pug
+block title
+  title=webName + '首頁'
+block content
+  block header
+    .banner
+  block main
+    .sample
+      div
+        Logo
+        h1.title nuxt-sample
+        .links
+          a(href="https://nuxtjs.org/" rel="noopener noreferrer" class="button--green") Documentation
+          a(href="https://github.com/nuxt/nuxt.js" rel="noopener noreferrer" class="button--grey") GitHub
