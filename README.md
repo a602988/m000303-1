@@ -1,12 +1,15 @@
 # Nuxt.js 專案
+‼️各資料夾底下亦有README說明  
+
 更新日期：2020-07-22  
-&nbsp;
+&nbsp;  
 
 ## 目錄
 1. [專案架構](#專案架構)
 2. [npm指令](#npm指令)
 3. [專案設定](#專案設定)
 4. [線上文檔](#線上文檔)
+
 &nbsp;
 
 ## 專案架構
@@ -25,7 +28,7 @@
  ┣ 📂 static（靜態資源）        不需被打包的資源
  ┃  ┣ 📂 js
  ┃  ┗ 📂 pug (頁面)            引入template用
- ┃    ┗ 📂 mixins (模版)       mixin無法被引入template !!
+ ┃    ┗ 📂 mixins (模版)       !! mixin無法被引入template !!
  ┣ 📂 store（狀態管理)          組件之間的溝通管理；使用Vuex
  ┣ 📜 nuxt.config.js          專案設定
  ┗ 📜 package.json            專案資訊
@@ -103,7 +106,7 @@ export default {
   /*
    * style-resource 設定
    * 將scss變數/mixin傳送至所有CSS
-   * !!!! 只需引入需要使用的檔案，否則CSS會一直重複 !!!!
+   * !! 只需引入需要使用的檔案，否則CSS會一直重複 !!
    */
   styleResources: {
     scss: [
