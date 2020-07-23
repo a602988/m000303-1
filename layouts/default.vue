@@ -10,8 +10,7 @@
 </style>
 
 <script>
-import $ from 'jquery';
-import Header from '@/components/Header';
+import Header from '@/components/Header'
 export default {
   head() {
     return {
@@ -27,12 +26,12 @@ export default {
   methods: {
     svg: function() {
       $('img.svg').each(function () {
-        var $img = $(this),
+        const $img = $(this),
           imgID = $img.attr('id'),
           imgClass = $img.attr('class'),
           imgURL = $img.attr('src') || $img.data('src');
         $.get(imgURL, function (data) {
-          var $svg = $(data).find('svg');
+          let $svg = $(data).find('svg');
           if (typeof imgID !== 'undefined') {
             $svg = $svg.attr('id', imgID);
           }
@@ -46,10 +45,16 @@ export default {
           $img.replaceWith($svg);
         }, 'xml');
       });
+    },
+    imgFill: function() {
+      $('.imgFill').imgLiquid()
     }
   },
   mounted() {
-    this.svg();
+    this.$nextTick(() => {
+      this.svg()
+      this.imgFill()
+    })
   },
 }
 </script>

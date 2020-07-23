@@ -1,11 +1,14 @@
-// custom variables
+// -------------------------------------------
+//  custom variables
+// -------------------------------------------
 
-// colors
-$custom-color: (
-  main-blue: '#678AFC',
-  light-blue: '#94CEFC',
-);
+// fonts
+$poppins: 'Poppins', 'Helvetica Neue', 'Arial', sans-serif;
+$barlow: 'Barlow Condensed', 'Helvetica Neue', 'Arial', sans-serif;
 
-@function custom-color($color-name) {
-  @return map-get($custom-color, $color-name);
-}
+// color
+$light-gray: rgba(135, 135, 135, 0.9);
+$medium-gray: rgba(90, 90, 90, 0.9);
+$main-blue: #678AFC;
+$light-blue: #94CEFC;
+$lighter-blue: #BDE7FF;

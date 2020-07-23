@@ -18,18 +18,22 @@
  ┣ 📂 assets (資源)           需被打包的資源
  ┃  ┣ 📂 images (圖片)
  ┃  ┗ 📂 sass (樣式)
- ┣ 📂 components (Vue組件) 
+ ┣ 📂 components (Vue組件)    非頁面的vue組件放置於此
+ ┃  ┗ 📜 <組件名稱>.vue        e.g. Header.vue
  ┣ 📂 layouts (Vue版型)
- ┣ 📂 locales (語系資料)
+ ┃  ┗ 📜 default.vue          公用版型
+ ┣ 📂 locales (語系資料)       若不需語系可刪除
+ ┃  ┗ 📜 <語系>.json           e.g. zh-Hant.json / en.json
  ┣ 📂 middleware (中介件)
  ┣ 📂 pages (Vue頁面)
- ┃  ┗ 📂 _lang（頁面內容）      如無語系設定可省略此層
+ ┃  ┗ 📜 <頁面名稱>.vue        e.g. index.vue (非頁面請勿放置於此)
  ┣ 📂 plugins (套件)
- ┣ 📂 static（靜態資源）        不需被打包的資源
+ ┃  ┗ 📜 <套件名稱>.js         e.g. bootstrap.js (須從nuxt.config.js引入)
+ ┣ 📂 static (靜態資源)        不需被打包的資源
  ┃  ┣ 📂 js
- ┃  ┗ 📂 pug (頁面)            引入template用
- ┃    ┗ 📂 mixins (模版)       !! mixin無法被引入template !!
- ┣ 📂 store（狀態管理)          組件之間的溝通管理；使用Vuex
+ ┃  ┗ 📂 pug (頁面內容)        引入template用
+ ┃    ┗ 📂 mixins (模版)       
+ ┣ 📂 store (狀態管理)         組件之間的溝通管理(Vuex)
  ┣ 📜 nuxt.config.js          專案設定
  ┗ 📜 package.json            專案資訊
 ```  
@@ -63,32 +67,42 @@ export default {
   /*
    * head 設定
    * 個別頁面head資訊可在.vue裡設定
+   * ※ hid 為可以覆蓋的 meta，例如在index.vue裡設定不同的description，預設的description會被覆蓋
    */
   head: {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: '' },
+      { hid: 'og:title', propety: 'og:title', content: '' },
+      { hid: 'og:url', propety: 'og:url', content: '' },
+      { hid: 'og:site_name', propety: 'og:site_name', content: '' },
+      { hid: 'og:description', propety: 'og:description', content: '' },
+      { hid: 'og:image', propety: 'og:image', content: '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/...' }
     ],
   },
-  /* 公用樣式 */
+  /*
+   * 公用樣式
+   * 引入sass或SCSS，會自動編譯成CSS
+   */
   css: [
     '@/assets/sass/style.sass'
   ],
-  /* 載入套件 */
+  /*
+   * 載入套件
+   * 個別組件使用之套件可在.vue裡設定
+   * ssr預設為true（前後端都做渲染）
+   */
   plugins: [
-    {
-      src: '@/plugins/bootstrap.js',
-      ssr: false
-    }
+    { src: '@/plugins/jquery.js', ssr: false },
+    { src: '@/plugins/bootstrap.js', ssr: false }
   ],
   components: true,
-  buildModules: [
-  ],
+  buildModules: [],
   /* 使用模組 */
   modules: [
     'bootstrap-vue/nuxt',

@@ -19,7 +19,12 @@ export default {
     meta: [
       { charset: 'utf-8' },
       // { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: '' },
+      { hid: 'og:title', propety: 'og:title', content: '' },
+      { hid: 'og:url', propety: 'og:url', content: '' },
+      { hid: 'og:site_name', propety: 'og:site_name', content: '' },
+      { hid: 'og:description', propety: 'og:description', content: '' },
+      { hid: 'og:image', propety: 'og:image', content: '' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -37,10 +42,9 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    {
-      src: '@/plugins/bootstrap.js',
-      ssr: false
-    }
+    { src: '@/plugins/jquery.js', ssr: false },
+    { src: '@/plugins/bootstrap.js', ssr: false },
+    { src: '@/plugins/imgLiquid.js', ssr: false }
   ],
   /*
   ** Auto import components
@@ -103,6 +107,6 @@ export default {
         'window.jQuery': 'jquery',
         'window.$': 'jquery',
       }),
-    ],
+    ]
   }
 }

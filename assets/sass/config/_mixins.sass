@@ -33,23 +33,6 @@
     @content
 
 // --------------------
-// common usage
-// --------------------
-
-// rounded button
-=btn-rounded($value)
-  height: $value
-  border-radius: $value
-
-// line clamp
-=line-clamp($value)
-  display: -webkit-box
-  -webkit-box-orient: vertical
-  -webkit-line-clamp: $value
-  overflow: hidden
-  text-overflow: ellipsis
-
-// --------------------
 // prefixes
 // --------------------
 
@@ -373,3 +356,40 @@
   -moz-animation-fill-mode: $mode
   -o-animation-fill-mode: $mode
   animation-fill-mode: $mode
+
+// --------------------
+// common usage
+// --------------------
+
+// rounded button
+=btn-rounded($value)
+  height: $value
+  border-radius: $value
+
+// line clamp
+=line-clamp($value)
+  display: -webkit-box
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: $value
+  overflow: hidden
+  text-overflow: ellipsis
+
+// msg bubble
+=msg-bubble
+  position: relative
+  display: inline-block
+  color: #ffffff
+  padding: 0.55em 1em 0.5em
+  border-radius: 0.75em
+  line-height: 1.15
+  +v-gradient(#ff4e6c, #d83742)
+  &::before
+    content: ''
+    position: absolute
+    top: 100%
+    left: 1.25em
+    display: block
+    border-top: 0.4em solid #d83742
+    border-left: 0.2em solid transparent
+    border-right: 0.2em solid transparent
+    +skew(45, 0)

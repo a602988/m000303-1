@@ -1,4 +1,11 @@
 /* -------------------------------------------
+   layout
+  ------------------------------------------ */
+
+.wp
+  min-width: 1200px
+
+/* -------------------------------------------
    header
   ------------------------------------------ */
 
@@ -25,28 +32,121 @@
       mix-blend-mode: screen
     .topbar-inner
       position: relative
-      height: 80px
+      .container
+        height: 80px
     .topbar-links
       .logo
         width: 190px
         a
           display: block
       .mainlinks
-        margin-left: 45px
-        [data-level="0"]
-          > li
-            + li
-              margin-left: 40px
-            > .ml-tt
-              font-size: 18px
-              // font-weight: 500
-              letter-spacing: 0.05em
-              .ml-tt-txt
+        margin-left: 35px
+        .ml-category
+          height: 80px
+          padding: 20px 0
+          .ml-tt
+            position: relative
+            height: 100%
+            padding: 0 17.5px
+            font-size: 18px
+            line-height: 1.15
+            letter-spacing: 0.05em
+            .ml-tt-txt
+              // position: relative
+              display: block
+              &::before
+                content: ''
+                position: absolute
+                top: 0
+                left: -2.5px
+                right: -2.5px
+                bottom: 0
+                background-color: rgba(255,255,255,.2)
+                border-radius: 40px
+                opacity: 0
+                +transition(opacity .3s ease)
+          .ml-dd
+            position: absolute
+            z-index: -1
+            top: 80px
+            left: 0
+            right: 0
+            visibility: hidden
+            opacity: 0
+            background-color: rgba(255,255,255,.95)
+            box-shadow: 0 3.5px 25px rgba(0,0,0,.2)
+            color: $gray-800
+            +transition-property(opacity, visibility)
+            +transition-duration(.3s)
+            +transition-timing-function(ease-in-out)
+            .ml-dd-inner
+              height: 300px
+              padding: 0 30px
+              > div
+                +flex-shrink(0)
+            .category-list
+              width: calc(100% - 250px)
+              .game
+                .game-info
+                  > span
+                    display: block
+                    line-height: 1.15
+                  .game-info-title
+                    position: relative
+                    .msg-bubble
+                      position: absolute
+                      bottom: calc(100% + 5px)
+                    .txt
+                      font-size: 30px
+                      font-weight: 700
+                      color: $medium-gray
+                  .game-info-tagline
+                    font-size: 15px
+                    letter-spacing: 0.05em
+                    margin-top: 10px
+                    color: $light-gray
+                  .game-info-btn
+                    margin-top: 40px
+            .category-info
+              width: 155px
+              text-align: right
+              > span
                 display: block
-                +media-hover
-                  +transition-property(opacity)
-                +media-hover-style
-                  opacity: 0.75
+                line-height: 1
+              .title
+                font-weight: 600
+                font-size: 36px
+                line-height: .85
+                -webkit-background-clip: text
+                background-clip: text
+                color: transparent
+                +v-gradient($lighter-blue 30%, $main-blue)
+                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+                  background: none
+                  color: $main-blue
+              .txt
+                font-weight: 500
+              .percentage
+                font-weight: 500
+                .num
+                  font-size: 80px
+                .symbol
+                  font-size: 40px
+            &.horizontal-items
+              .category-list
+                .game
+                  + .game
+                    margin-left: 30px
+                  .game-info
+                    margin-left: 15px
+          &.active
+            .ml-tt
+              .ml-tt-txt
+                &::before
+                  opacity: 1
+            .ml-dd
+              visibility: visible
+              opacity: 1
     .topbar-user
       padding-right: 15px
       .dropdown
@@ -89,6 +189,7 @@
       .user-lang
         margin-left: 30px
         .lang-flag
+          +flex-shrink(0)
           width: 25px
           height: 25px
           border-radius: 50%
@@ -108,6 +209,6 @@
               margin-top: 15px
             a
               +media-hover-style
-                color: #5678F7
+                color: $main-blue
             .txt
               margin-left: 10px

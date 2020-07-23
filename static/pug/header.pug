@@ -1,24 +1,28 @@
 include mixins/_config.pug
 
 //- mainlinks
-mixin mainlink(title, url)
-  li
+mixin mainlink(category, url)
+  li.ml-category(data-category=category)
     .ml-tt.d-flex.align-items-center
-      n-link.ml-tt-txt(:to="localePath('" + url + "')")= title
+      n-link.ml-tt-txt(:to="localePath('" + url + "')")= `{{ $t('mainlinks.` + category + `') }}`
     if block
-      .ml-dd
-        block
-mixin mainlinks
-  ul(data-level="0").d-flex.align-items-center.list-unstyled
-    +mainlink("{{ $t('mainlinks.index') }}", '/')
-    +mainlink("{{ $t('mainlinks.sports') }}", 'sports')
-    +mainlink("{{ $t('mainlinks.live') }}", 'live')
-    +mainlink("{{ $t('mainlinks.lottery') }}", 'lottery')
-    +mainlink("{{ $t('mainlinks.slot') }}", 'slot')
-    +mainlink("{{ $t('mainlinks.fishing') }}", 'fishing')
-    +mainlink("{{ $t('mainlinks.chess') }}", 'chess')
-    +mainlink("{{ $t('mainlinks.agents') }}", 'agents')
-    +mainlink("{{ $t('mainlinks.events') }}", 'events')
+      block
+mixin submenu(classname)
+  .ml-dd(class=classname)
+    .ml-dd-inner.container.d-flex.justify-content-between.align-items-center
+      block
+mixin category-list(classname)
+  .category-list.d-flex.align-items-center(class=classname)
+    block
+mixin category-info(classname)
+  .category-info(class=classname)
+    block
+mixin game(classname)
+  .game.d-flex.align-items-center(class=classname)
+    block
+mixin game-btn(url)
+  .n-link.game-info-btn.btn.btn-silver(:to="localePath('/" + url + "')" role="button")
+    span.btn-inner 進入遊戲
 mixin langLink(langCode, langName)
   li.list-item
     n-link(:to="switchLocalePath('" + langCode + "')")
@@ -29,32 +33,110 @@ mixin langLink(langCode, langName)
 //- site header
 header.site-header
   .header-topbar
-    .topbar-inner.container.d-flex.justify-content-between
-      .topbar-links.d-flex.align-items-center
-        .logo
-          n-link(:to="localePath('/')")
-            img(src=imgPj+"logo.png" :title="webname" alt="")
-        nav.mainlinks
-          +mainlinks
-      .topbar-user.d-flex.align-items-center
-        .user-actions(v-if="!userLogin")
-          ul.d-flex.align-items-center.list-unstyled
-            li.list-item
-              n-link(:to="localePath('/login')")
-                span.icon-inline.icon-fs
-                  img.svg(src=imgSvg+"icon-personal.svg")
-                span.txt {{ $t('actions.login') }}
-            li.list-item
-              n-link(:to="localePath('/register')")
-                span.txt {{ $t('actions.register') }}
-        .user-logged(v-else)
-          .avatar
-        .user-lang.dropdown
-          button.btn.p-0.lang-toggle.dropdown-toggle.d-flex.align-items-center#lang-toggle(type="button" data-toggle="dropdown" aria-haspopup="true")
-            img.lang-flag(:src="require('" + imgPj + "header/flags/' + $i18n.locale + '.png')" alt="")
-          .lang-dropdown.dropdown-menu.dropdown-menu-right.p-4(aria-labelledby="lang-toggle")
-            ul.list-unstyled
-              +langLink('zh-Hant', '繁體中文')
-              +langLink('zh-Hans', '简体中文')
-              +langLink('vi', 'Tiếng Việt')
-              +langLink('th', 'ไทย')
+    .topbar-inner
+      .container.d-flex.justify-content-between
+        .topbar-links.d-flex.align-items-center
+          .logo
+            n-link(:to="localePath('/')")
+              img(src=imgPj+"logo.png" :title="webname" alt="")
+          //- mainlinks
+          nav.mainlinks
+            ul(data-level="0").d-flex.align-items-center.list-unstyled
+              +mainlink('index', '/')
+              +mainlink('sports', 'sports')
+                +submenu('horizontal-items')
+                  +category-list
+                    +game
+                      .game-pic
+                        img(src=imgPj + 'header/sports/game01.png')
+                      .game-info
+                        span.game-info-title
+                          span.txt SUPER體育
+                        span.game-info-tagline 讓您親臨現場觀賽樂在其中
+                        +game-btn('sports')
+                    +game
+                      .game-pic
+                        img(src=imgPj + 'header/sports/game02.png')
+                      .game-info
+                        span.game-info-title
+                          span.msg-bubble 有更多賽事哦
+                          span.txt 365體育
+                        span.game-info-tagline 口碑最好的體育娛樂平台
+                        +game-btn('sports')
+                  +category-info
+                    span.title.text-uppercase.ff-barlow Sports Events
+                    span.txt.mt-3.mb-2 返水最高可達
+                    span.percentage.tc-mainBlue.ff-barlow
+                      span.num 1.18
+                      span.symbol %
+              +mainlink('live', 'live')
+              +mainlink('lottery', 'lottery')
+                +submenu('horizontal-items')
+                  +category-list
+                    +game
+                      .game-pic
+                        img(src=imgPj + 'header/lottery/game01.png')
+                      .game-info
+                        span.game-info-title
+                          span.msg-bubble.msg-bubble-sm NEW
+                          span.txt 利亨彩票
+                        span.game-info-tagline 旗艦彩種 應有盡有
+                        +game-btn('lottery')
+                    +game
+                      .game-pic
+                        img(src=imgPj + 'header/lottery/game02.png')
+                      .game-info
+                        span.game-info-title
+                          span.txt TCG彩票
+                        span.game-info-tagline 旗艦彩種 應有盡有
+                        +game-btn('lottery')
+                  +category-info
+                    span.title.text-uppercase.ff-barlow Lottery Games
+                    span.txt.mt-3.mb-2 首存即送
+                    span.percentage.tc-mainBlue.ff-barlow
+                      span.num 388
+              +mainlink('slot', 'slot')
+              +mainlink('fishing', 'fishing')
+                +submenu('horizontal-items')
+                  +category-list('justify-content-center')
+                    +game
+                      .game-pic
+                        img(src=imgPj + 'header/fishing/game01.png')
+                      .game-info
+                        span.game-info-title
+                          span.msg-bubble.msg-bubble-sm NEW
+                          span.txt 魚樂無窮
+                        span.game-info-tagline 這片海域被你承包了
+                        +game-btn('fishing')
+                  +category-info
+                    span.title.text-uppercase.ff-barlow Fishing Gaming
+                    span.txt.mt-3.mb-2 最高返水
+                    span.percentage.tc-mainBlue.ff-barlow
+                      span.num 1.20
+                      span.symbol %
+              +mainlink('chess', 'chess')
+              +mainlink('agents', 'agents')
+              +mainlink('events', 'events')
+        //- end mainlinks
+        .topbar-user.d-flex.align-items-center
+          .user-actions(v-if="!userLogin")
+            ul.d-flex.align-items-center.list-unstyled
+              li.list-item
+                n-link(:to="localePath('/login')")
+                  span.icon-inline.icon-fs
+                    img.svg(src=imgSvg+"icon-personal.svg")
+                  span.txt {{ $t('actions.login') }}
+              li.list-item
+                n-link(:to="localePath('/register')")
+                  span.txt {{ $t('actions.register') }}
+          .user-logged(v-else)
+            .avatar
+          .user-lang.dropdown
+            button.btn.p-0.lang-toggle.dropdown-toggle.d-flex.align-items-center#lang-toggle(type="button" data-toggle="dropdown" aria-haspopup="true")
+              img.lang-flag(:src="require('" + imgPj + "header/flags/' + $i18n.locale + '.png')" alt="")
+            .lang-dropdown.dropdown-menu.dropdown-menu-right.p-4(aria-labelledby="lang-toggle")
+              ul.list-unstyled
+                +langLink('zh-Hant', '繁體中文')
+                +langLink('zh-Hans', '简体中文')
+                +langLink('vi', 'Tiếng Việt')
+                +langLink('th', 'ไทย')
