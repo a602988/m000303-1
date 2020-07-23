@@ -21,11 +21,11 @@ mixin game(classname)
   .game.d-flex.align-items-center(class=classname)
     block
 mixin game-btn(url)
-  .n-link.game-info-btn.btn.btn-silver(:to="localePath('/" + url + "')" role="button")
+  n-link.game-info-btn.btn.btn-silver(:to="localePath('/" + url + "')")
     span.btn-inner 進入遊戲
 mixin langLink(langCode, langName)
   li.list-item
-    n-link(:to="switchLocalePath('" + langCode + "')")
+    n-link(:to="switchLocalePath('" + langCode + "')" role="button")
       span.icon-inline
         img.lang-flag(src=imgPj + "header/flags/" + langCode + ".png" alt="")
       span.txt= langName
