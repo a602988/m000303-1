@@ -28,6 +28,8 @@ img
   ------------------------------------------ */
 
 // fonts
+.ff-sans
+  font-family: 'Helvetica Neue', 'Arial', sans-serif
 .ff-poppins
   font-family: $poppins
 .ff-barlow
@@ -38,6 +40,20 @@ img
   color: $main-blue
 .tc-lightBlue
   color: $light-blue
+
+// line height
+.lh-100
+  line-height: 1
+.lh-115
+  line-height: 1.15
+.lh-125
+  line-height: 1.25
+.lh-150
+  line-height: 1.5
+.lh-175
+  line-height: 1.75
+.lh-200
+  line-height: 2
 
 // images
 .pic-block
@@ -82,6 +98,16 @@ img.svg
   opacity: 0
 .replaced-svg
   overflow: visible
+.d-flex-center
+  +flexbox
+  +justify-content-center
+  +align-items-center
+.d-flex-jc
+  +flexbox
+  +justify-content-center
+.d-flex-ac
+  +flexbox
+  +align-items-center
 
 // buttons
 .btn-silver
@@ -126,6 +152,23 @@ img.svg
   &:active
     .btn-inner
       +translateY(2px)
+.btn-blueGradient
+  position: relative
+  overflow: hidden
+  +v-gradient($light-blue, $main-blue)
+  &::before
+    content: ''
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    display: block
+    opacity: 0
+    background-color: rgba(0,0,0,.5)
+  .btn-inner
+    position: relative
+    color: #ffffff
 
 // msg bubble
 .msg-bubble

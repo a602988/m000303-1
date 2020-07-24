@@ -44,6 +44,8 @@
         .ml-category
           height: 80px
           padding: 20px 0
+          + .ml-category
+            margin-left: 2px
           .ml-tt
             position: relative
             height: 100%
@@ -85,19 +87,24 @@
               > div
                 +flex-shrink(0)
             .category-list
-              width: calc(100% - 250px)
+              width: calc(100% - 200px)
               .game
-                .game-info
-                  > span
+                + .game
+                  margin-left: 30px
+                .game-pic
+                  img
                     display: block
-                    line-height: 1.15
+                .game-info
+                  .game-info-content
+                    > span
+                      display: block
+                      line-height: 1.15
                   .game-info-title
                     position: relative
                     .msg-bubble
                       position: absolute
                       bottom: calc(100% + 5px)
                     .txt
-                      font-size: 30px
                       font-weight: 700
                       color: $medium-gray
                   .game-info-tagline
@@ -107,8 +114,25 @@
                     color: $light-gray
                   .game-info-btn
                     margin-top: 40px
+                  .game-info-maintenance
+                    position: absolute
+                    z-index: 1
+                    top: 0
+                    left: 0
+                    right: 0
+                    bottom: 0
+                    +flexbox
+                    +flex-column
+                    +justify-content-center
+                    +align-items-center
+                    background-color: rgba(187, 195, 235, .9)
+                    border-radius: 15px
+                    text-align: center
+                    color: #ffffff
+                    > span
+                      display: block
             .category-info
-              width: 155px
+              width: 160px
               text-align: right
               > span
                 display: block
@@ -135,10 +159,50 @@
             &.horizontal-items
               .category-list
                 .game
-                  + .game
-                    margin-left: 30px
+                  .game-pic
+                    img
+                      max-height: 300px
                   .game-info
-                    margin-left: 15px
+                    position: relative
+                    +flexbox
+                    +justify-content-center
+                    +align-items-center
+                    height: 250px
+                    padding: 20px
+                    .game-info-title
+                      font-size: 30px
+            &.vertical-items
+              .ml-dd-inner
+                padding-top: 10px
+              .category-list
+                .game
+                  position: relative
+                  .game-info
+                    .game-info-title
+                      font-size: 20px
+                    .game-info-maintenance
+                      top: -25px
+                      left: -5px
+                      right: -5px
+                      bottom: -15px
+                  .game-pic
+                    +flexbox
+                    +align-items-center
+                    height: 185px
+                    margin-top: 15px
+                    img
+                      max-height: 100%
+                    a
+                      +media-hover
+                        img
+                          +transition(transform .3s ease-in-out)
+                      +media-hover-style
+                        img
+                          +scale(1.05)
+            &.narrow
+              .category-list
+                .game + .game
+                  margin-left: 15px
           &.active
             .ml-tt
               .ml-tt-txt
@@ -164,7 +228,6 @@
           .dropdown-menu
             visibility: visible
             opacity: 1
-            margin-top: 20px
       .user-actions
         font-size: 18px
         font-weight: 300
@@ -186,6 +249,70 @@
             margin-right: 5px
             vertical-align: 0
             font-size: 20px
+      .user-logged
+        .user-avatar
+          width: 40px
+          height: 40px
+          border: 1px solid #ffffff
+          border-radius: 50%
+          overflow: hidden
+        .user-detail
+          margin-left: 15px
+          .user-info-name
+            font-size: 15px
+            letter-spacing: 0.025em
+          .user-info-level
+            display: inline-block
+            margin-left: 10px
+            padding: 2.5px 10px
+            border-radius: 3px
+            +v-gradient(#7fd2ff, #6ac5ff)
+            font-size: 14px
+            font-weight: 700
+        .user-more
+          .user-more-deposit
+            font-size: 15px
+          .user-more-toggle
+            margin-left: 20px
+            font-size: 12px
+            &::after
+              display: none
+          .user-more-dropdown
+            width: 245px
+            .actions
+              .list-item
+                + .list-item
+                  margin-left: 35px
+                .icon-block
+                  width: 36px
+                  height: 36px
+                  font-size: 20px
+                .txt
+                  font-size: 14px
+            .menu
+              .list-item
+                + .list-item
+                  margin-top: 20px
+                .icon-block
+                  width: 36px
+                  height: 36px
+                  border: 1px solid #ffffff
+                  color: $main-blue
+                  +h-gradient(#FAFAFA, #F9F9F9)
+                  box-shadow: 3px 3px 5px rgba(0,0,0,.075)
+                .title
+                  margin-left: 15px
+                  .txt
+                    font-size: 14px
+                a
+                  border-radius: 36px
+                  +media-hover
+                    +transition-property(background-color)
+                  +media-hover-style
+                    background-color: #f8f8f8
+          &.show
+            .user-more-dropdown
+              margin-top: 10px
       .user-lang
         margin-left: 30px
         .lang-flag
@@ -212,3 +339,6 @@
                 color: $main-blue
             .txt
               margin-left: 10px
+        &.show
+          .lang-dropdown
+            margin-top: 20px

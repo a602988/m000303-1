@@ -3,22 +3,22 @@ include mixins/_config.pug
 //- mainlinks
 mixin mainlink(category, url)
   li.ml-category(data-category=category)
-    .ml-tt.d-flex.align-items-center
+    .ml-tt.d-flex-ac
       n-link.ml-tt-txt(:to="localePath('" + url + "')")= `{{ $t('mainlinks.` + category + `') }}`
     if block
       block
 mixin submenu(classname)
   .ml-dd(class=classname)
-    .ml-dd-inner.container.d-flex.justify-content-between.align-items-center
+    .ml-dd-inner.container.d-flex-ac.justify-content-between
       block
 mixin category-list(classname)
-  .category-list.d-flex.align-items-center(class=classname)
+  .category-list.d-flex-ac(class=classname)
     block
 mixin category-info(classname)
   .category-info(class=classname)
     block
 mixin game(classname)
-  .game.d-flex.align-items-center(class=classname)
+  .game.d-flex-ac(class=classname)
     block
 mixin game-btn(url)
   n-link.game-info-btn.btn.btn-silver(:to="localePath('/" + url + "')")
@@ -35,13 +35,13 @@ header.site-header
   .header-topbar
     .topbar-inner
       .container.d-flex.justify-content-between
-        .topbar-links.d-flex.align-items-center
+        .topbar-links.d-flex-ac
           .logo
             n-link(:to="localePath('/')")
               img(src=imgPj+"logo.png" :title="webname" alt="")
           //- mainlinks
           nav.mainlinks
-            ul(data-level="0").d-flex.align-items-center.list-unstyled
+            ul(data-level="0").d-flex-ac.list-unstyled
               +mainlink('index', '/')
               +mainlink('sports', 'sports')
                 +submenu('horizontal-items')
@@ -50,19 +50,21 @@ header.site-header
                       .game-pic
                         img(src=imgPj + 'header/sports/game01.png')
                       .game-info
-                        span.game-info-title
-                          span.txt SUPER體育
-                        span.game-info-tagline 讓您親臨現場觀賽樂在其中
-                        +game-btn('sports')
+                        .game-info-content
+                          span.game-info-title
+                            span.txt SUPER體育
+                          span.game-info-tagline 讓您親臨現場觀賽樂在其中
+                          +game-btn('sports')
                     +game
                       .game-pic
                         img(src=imgPj + 'header/sports/game02.png')
                       .game-info
-                        span.game-info-title
-                          span.msg-bubble 有更多賽事哦
-                          span.txt 365體育
-                        span.game-info-tagline 口碑最好的體育娛樂平台
-                        +game-btn('sports')
+                        .game-info-content
+                          span.game-info-title
+                            span.msg-bubble 有更多賽事哦
+                            span.txt 365體育
+                          span.game-info-tagline 口碑最好的體育娛樂平台
+                          +game-btn('sports')
                   +category-info
                     span.title.text-uppercase.ff-barlow Sports Events
                     span.txt.mt-3.mb-2 返水最高可達
@@ -70,6 +72,73 @@ header.site-header
                       span.num 1.18
                       span.symbol %
               +mainlink('live', 'live')
+                +submenu('vertical-items')
+                  +category-list
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.msg-bubble.msg-bubble-sm NEW
+                            span.txt DG娛樂
+                      .game-pic
+                        n-link(:to="localePath('/live')")
+                          img(src=imgPj + 'header/live/game01.png')
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.msg-bubble.msg-bubble-sm 熱門
+                            span.txt WM娛樂
+                      .game-pic
+                        n-link(:to="localePath('/live')")
+                          img(src=imgPj + 'header/live/game02.png')
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.txt 沙龍娛樂
+                        .game-info-maintenance
+                          span.h4.mb-3 維護中
+                          span 2020-07-15
+                          span.h5.mb-0 08:00
+                          span 至
+                          span 2020-07-15
+                          span.h5.mb-0 10:35
+                      .game-pic
+                        n-link(:to="localePath('/live')")
+                          img(src=imgPj + 'header/live/game03.png')
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.txt 歐博娛樂
+                      .game-pic
+                        n-link(:to="localePath('/live')")
+                          img(src=imgPj + 'header/live/game04.png')
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.txt OG娛樂
+                      .game-pic
+                        n-link(:to="localePath('/live')")
+                          img(src=imgPj + 'header/live/game05.png')
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.txt 皇家娛樂
+                      .game-pic
+                        n-link(:to="localePath('/live')")
+                          img(src=imgPj + 'header/live/game06.png')
+                  +category-info
+                    span.title.text-uppercase.ff-barlow Live
+                      br
+                      | Casino
+                    span.txt.mt-3.mb-2 返水最高可達
+                    span.percentage.tc-mainBlue.ff-barlow
+                      span.num 1.00
+                      span.symbol %
               +mainlink('lottery', 'lottery')
                 +submenu('horizontal-items')
                   +category-list
@@ -77,25 +146,109 @@ header.site-header
                       .game-pic
                         img(src=imgPj + 'header/lottery/game01.png')
                       .game-info
-                        span.game-info-title
-                          span.msg-bubble.msg-bubble-sm NEW
-                          span.txt 利亨彩票
-                        span.game-info-tagline 旗艦彩種 應有盡有
-                        +game-btn('lottery')
+                        .game-info-content
+                          span.game-info-title
+                            span.msg-bubble.msg-bubble-sm NEW
+                            span.txt 利亨彩票
+                          span.game-info-tagline 旗艦彩種 應有盡有
+                          +game-btn('lottery')
                     +game
                       .game-pic
                         img(src=imgPj + 'header/lottery/game02.png')
                       .game-info
-                        span.game-info-title
-                          span.txt TCG彩票
-                        span.game-info-tagline 旗艦彩種 應有盡有
-                        +game-btn('lottery')
+                        .game-info-content
+                          span.game-info-title
+                            span.txt TCG彩票
+                          span.game-info-tagline 旗艦彩種 應有盡有
+                          +game-btn('lottery')
+                        .game-info-maintenance
+                          span.h4.mb-3 維護中
+                          span 2020-07-15
+                          span.h5.mb-0 08:00
+                          span 至
+                          span 2020-07-15
+                          span.h5.mb-0 10:35
                   +category-info
                     span.title.text-uppercase.ff-barlow Lottery Games
                     span.txt.mt-3.mb-2 首存即送
                     span.percentage.tc-mainBlue.ff-barlow
                       span.num 388
               +mainlink('slot', 'slot')
+                +submenu('vertical-items narrow')
+                  +category-list
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.msg-bubble.msg-bubble-sm NEW
+                            span.txt BNG電子
+                      .game-pic
+                        n-link(:to="localePath('/slot')")
+                          img(src=imgPj + 'header/slot/game01.png')
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.txt Ameba電子
+                      .game-pic
+                        n-link(:to="localePath('/slot')")
+                          img(src=imgPj + 'header/slot/game02.png')
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.msg-bubble.msg-bubble-sm 熱門
+                            span.txt IFUN電子
+                      .game-pic
+                        n-link(:to="localePath('/slot')")
+                          img(src=imgPj + 'header/slot/game03.png')
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.txt KA電子
+                        .game-info-maintenance
+                          span.h4.mb-3 維護中
+                          span 2020-07-15
+                          span.h5.mb-0 08:00
+                          span 至
+                          span 2020-07-15
+                          span.h5.mb-0 10:35
+                      .game-pic
+                        n-link(:to="localePath('/slot')")
+                          img(src=imgPj + 'header/slot/game04.png')
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.txt QT電子
+                      .game-pic
+                        n-link(:to="localePath('/slot')")
+                          img(src=imgPj + 'header/slot/game05.png')
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.txt 沙龍電子
+                      .game-pic
+                        n-link(:to="localePath('/slot')")
+                          img(src=imgPj + 'header/slot/game06.png')
+                    +game('flex-column')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.txt PNG電子
+                      .game-pic
+                        n-link(:to="localePath('/slot')")
+                          img(src=imgPj + 'header/slot/game07.png')
+                  +category-info
+                    span.title.text-uppercase.ff-barlow Slot
+                      br
+                      | Games
+                    span.txt.mt-3.mb-2 返水最高可達
+                    span.percentage.tc-mainBlue.ff-barlow
+                      span.num 1.20
+                      span.symbol %
               +mainlink('fishing', 'fishing')
                 +submenu('horizontal-items')
                   +category-list('justify-content-center')
@@ -103,11 +256,12 @@ header.site-header
                       .game-pic
                         img(src=imgPj + 'header/fishing/game01.png')
                       .game-info
-                        span.game-info-title
-                          span.msg-bubble.msg-bubble-sm NEW
-                          span.txt 魚樂無窮
-                        span.game-info-tagline 這片海域被你承包了
-                        +game-btn('fishing')
+                        .game-info-content
+                          span.game-info-title
+                            span.msg-bubble.msg-bubble-sm NEW
+                            span.txt 魚樂無窮
+                          span.game-info-tagline 這片海域被你承包了
+                          +game-btn('fishing')
                   +category-info
                     span.title.text-uppercase.ff-barlow Fishing Gaming
                     span.txt.mt-3.mb-2 最高返水
@@ -115,12 +269,57 @@ header.site-header
                       span.num 1.20
                       span.symbol %
               +mainlink('chess', 'chess')
+                +submenu('horizontal-items')
+                  +category-list('justify-content-center')
+                    +game
+                      .game-pic
+                        img(src=imgPj + 'header/chess/game01.png')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.msg-bubble.msg-bubble-sm NEW
+                            span.txt 棋牌遊戲
+                          span.game-info-tagline 熱門遊戲 應有盡有
+                          +game-btn('chess')
+                    +game
+                      .game-pic
+                        img(src=imgPj + 'header/chess/game02.png')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.msg-bubble.msg-bubble-sm 熱門
+                            span.txt 棋牌遊戲
+                          span.game-info-tagline 熱門遊戲 應有盡有
+                          +game-btn('chess')
+                    +game
+                      .game-pic
+                        img(src=imgPj + 'header/chess/game03.png')
+                      .game-info
+                        .game-info-content
+                          span.game-info-title
+                            span.txt 棋牌遊戲
+                          span.game-info-tagline 熱門遊戲 應有盡有
+                          +game-btn('chess')
+                        .game-info-maintenance
+                          span.h4.mb-3 維護中
+                          span 2020-07-15
+                          span.h5.mb-0 08:00
+                          span 至
+                          span 2020-07-15
+                          span.h5.mb-0 10:35
+                  +category-info
+                    span.title.text-uppercase.ff-barlow chess &amp;
+                      br
+                      | card games
+                    span.txt.mt-3.mb-2 救援金天天領 最高
+                    span.percentage.tc-mainBlue.ff-barlow
+                      span.num 15888
               +mainlink('agents', 'agents')
               +mainlink('events', 'events')
         //- end mainlinks
-        .topbar-user.d-flex.align-items-center
-          .user-actions(v-if="!userLogin")
-            ul.d-flex.align-items-center.list-unstyled
+        .topbar-user.d-flex-ac
+          .user-actions(v-if="!$store.state.userLogin")
+            ul.d-flex-ac.list-unstyled
               li.list-item
                 n-link(:to="localePath('/login')")
                   span.icon-inline.icon-fs
@@ -129,10 +328,51 @@ header.site-header
               li.list-item
                 n-link(:to="localePath('/register')")
                   span.txt {{ $t('actions.register') }}
-          .user-logged(v-else)
-            .avatar
+          .user-logged.d-flex-ac(v-else)
+            .user-avatar.pic-block
+              n-link(:to="localePath('/member')")
+                img(src=imgDemo+"member/user-avatar.png" alt="")
+            .user-detail
+              .user-info.lh-115
+                n-link(:to="localePath('/member')").user-info-name.ff-sans dwkurich888
+                span.user-info-level.ff-sans VIP 0
+              .user-more.dropdown.lh-115
+                span.user-more-deposit.ff-sans.lh-115 $ 0.00
+                button.btn.p-0.lh-100.user-more-toggle.dropdown-toggle.text-reset#user-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent")
+                  .icon-block.icon-fs
+                    img.svg(src=imgSvg+"icon-chevron-down.svg" alt="")
+                .user-more-dropdown.dropdown-menu.p-4(aria-labelledby="user-toggle")
+                  .actions.pb-3
+                    ul.d-flex-center.list-unstyled
+                      mixin actionItem(url, icon, title)
+                        li.list-item.text-center
+                          n-link(:to="(localePath('/member/" + url + "'))")
+                            span.d-flex-center.btn-blueGradient.rounded-circle.icon-block.icon-fs
+                              span.btn-inner
+                                img.svg(src=imgSvg+icon+".svg" alt="")
+                            span.txt.d-block.mt-1=title
+                      +actionItem('deposit', 'icon-deposit', '存款')
+                      +actionItem('transfer', 'icon-transfer', '轉帳')
+                      +actionItem('withdraw', 'icon-withdraw', '取款')
+                  .dropdown-divider
+                  .menu.pt-3
+                    ul.list-unstyled
+                      mixin menuItem(url, icon, title)
+                        li.list-item
+                          n-link.d-flex-ac(:to="(localePath('/member/" + url + "'))")
+                            span.d-flex-center.icon-block.icon-fs.rounded-circle
+                              img.svg(src=imgSvg+icon+".svg" alt="")
+                            span.title
+                              span.txt=title
+                              if block
+                                block
+                      +menuItem('personal', 'icon-user', '個人資料')
+                      +menuItem('vip', 'icon-star', 'VIP特權')
+                      +menuItem('bet-record', 'icon-betRecord', '投注紀錄')
+                      +menuItem('trans-record', 'icon-transRecord', '交易紀錄')
+                      +menuItem('mail', 'icon-bell', '消息中心')
           .user-lang.dropdown
-            button.btn.p-0.lang-toggle.dropdown-toggle.d-flex.align-items-center#lang-toggle(type="button" data-toggle="dropdown" aria-haspopup="true")
+            button.btn.p-0.lang-toggle.dropdown-toggle.d-flex-ac#lang-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
               img.lang-flag(:src="require('" + imgPj + "header/flags/' + $i18n.locale + '.png')" alt="")
             .lang-dropdown.dropdown-menu.dropdown-menu-right.p-4(aria-labelledby="lang-toggle")
               ul.list-unstyled

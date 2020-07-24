@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -13,12 +14,17 @@ export default {
     return {
       title: this.title,
     }
+  },
+  methods: {
+    ...mapMutations(['detectLogin'])
+  },
+  beforeMount() {
+    this.detectLogin(true)
   }
 }
 </script>
 
 <style lang="sass" scoped>
-/* scoped = local style */
 
 .sample
   margin: 0 auto
