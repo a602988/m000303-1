@@ -98,16 +98,18 @@ img.svg
   opacity: 0
 .replaced-svg
   overflow: visible
+
+// display
 .d-flex-center
-  +flexbox
-  +justify-content-center
-  +align-items-center
+  display: flex !important
+  justify-content: center !important
+  align-items: center !important
 .d-flex-jc
-  +flexbox
-  +justify-content-center
+  display: flex !important
+  justify-content: center !important
 .d-flex-ac
-  +flexbox
-  +align-items-center
+  display: flex !important
+  align-items: center !important
 
 // buttons
 .btn-silver
@@ -165,7 +167,8 @@ img.svg
     bottom: 0
     display: block
     opacity: 0
-    background-color: rgba(0,0,0,.5)
+    background-color: rgba(0,0,0,.15)
+    +transition(opacity .3s ease)
   .btn-inner
     position: relative
     color: #ffffff

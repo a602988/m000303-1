@@ -8,6 +8,17 @@
 // media query
 // --------------------
 
+// media query size
+=media-min($query)
+  @media (min-width: $query)
+    @content
+=media-max($query)
+  @media (max-width: $query)
+    @content
+=media-mm($q1, $q2)
+  @media (min-width: $q1) and (max-width: $q2)
+    @content
+
 // media query hover
 =media-hover
   @media (hover: hover), (-ms-high-contrast: none)

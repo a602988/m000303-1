@@ -1,4 +1,4 @@
-<template src="@/static/pug/header.pug" lang="pug"></template>
+<template src="@/templates/header.pug" lang="pug"></template>
 
 <script>
 export default {

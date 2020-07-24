@@ -346,11 +346,12 @@ header.site-header
                     ul.d-flex-center.list-unstyled
                       mixin actionItem(url, icon, title)
                         li.list-item.text-center
-                          n-link(:to="(localePath('/member/" + url + "'))")
-                            span.d-flex-center.btn-blueGradient.rounded-circle.icon-block.icon-fs
-                              span.btn-inner
-                                img.svg(src=imgSvg+icon+".svg" alt="")
-                            span.txt.d-block.mt-1=title
+                          n-link.link-btn(:to="(localePath('/member/" + url + "'))")
+                            .link-btn-inner
+                              span.d-flex-center.btn-blueGradient.rounded-circle.icon-block.icon-fs
+                                span.btn-inner
+                                  img.svg(src=imgSvg+icon+".svg" alt="")
+                              span.txt.d-block.mt-1=title
                       +actionItem('deposit', 'icon-deposit', '存款')
                       +actionItem('transfer', 'icon-transfer', '轉帳')
                       +actionItem('withdraw', 'icon-withdraw', '取款')
@@ -359,18 +360,23 @@ header.site-header
                     ul.list-unstyled
                       mixin menuItem(url, icon, title)
                         li.list-item
-                          n-link.d-flex-ac(:to="(localePath('/member/" + url + "'))")
-                            span.d-flex-center.icon-block.icon-fs.rounded-circle
-                              img.svg(src=imgSvg+icon+".svg" alt="")
-                            span.title
-                              span.txt=title
+                          n-link.link-btn(:to="(localePath('/member/" + url + "'))")
+                            .link-btn-inner.d-flex-ac
+                              span.d-flex-center.icon-block.icon-fs.rounded-circle
+                                img.svg(src=imgSvg+icon+".svg" alt="")
                               if block
-                                block
+                                span.title.d-flex-ac.justify-content-between
+                                  span.txt=title
+                                  block
+                              else
+                                span.title
+                                  span.txt=title
                       +menuItem('personal', 'icon-user', '個人資料')
                       +menuItem('vip', 'icon-star', 'VIP特權')
                       +menuItem('bet-record', 'icon-betRecord', '投注紀錄')
                       +menuItem('trans-record', 'icon-transRecord', '交易紀錄')
                       +menuItem('mail', 'icon-bell', '消息中心')
+                        span.count.d-flex-center.mr-2 46
           .user-lang.dropdown
             button.btn.p-0.lang-toggle.dropdown-toggle.d-flex-ac#lang-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
               img.lang-flag(:src="require('" + imgPj + "header/flags/' + $i18n.locale + '.png')" alt="")
