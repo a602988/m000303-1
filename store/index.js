@@ -13,11 +13,10 @@ export const mutations = {
 }
 
 export const actions = {
-  // example
-  login() {
-    commit('detectLogin', true)
+  login(context) {
+    context.commit('detectLogin', true)
   },
-  logout() {
-    commit('detectLogin', false)
+  logout(context) {
+    context.commit('detectLogin', false)
   }
 }

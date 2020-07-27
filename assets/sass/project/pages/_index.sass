@@ -1,0 +1,79 @@
+/* -------------------------------------------
+   home
+  ------------------------------------------ */
+
+// swiper variables  
+\:root
+  --swiper-theme-color: #335CB9
+
+// home section
+.home-section
+  margin-bottom: 70px
+  .section-head
+    color: #41425E
+    .title-en
+      font-size: 24px
+    .title-zh
+      font-size: 40px
+      color: #58a9fe
+
+// home banner
+.home-banner
+  .home-banner-swiper
+    position: relative
+  .swiper-wrapper
+    .swiper-slide
+      height: 700px
+  .swiper-pagination
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 57.5px
+    .swiper-pagination-bullet
+      position: relative
+      width: 10px
+      height: 10px
+      margin: 0 15px
+      opacity: 1
+      &:not(.swiper-pagination-bullet-active)
+        background-color: #A6A6A6
+      .bullet-thumbnail
+        position: absolute
+        left: -65px
+        bottom: calc(100% + 10px)
+        display: block
+        width: 140px
+        visibility: hidden
+        opacity: 0
+        overflow: hidden
+        border-radius: 3px
+        box-shadow: 0 2px 8px rgba(51,92,185,.25)
+      +media-hover
+        .bullet-thumbnail
+          +transition-property(visibility, opacity)
+          +transition-duration(.3s)
+          +transition-timing-function(ease)
+      +media-hover-style
+        .bullet-thumbnail
+          visibility: visible
+          opacity: 1
+  .news-marquee
+    overflow: hidden
+  .home-banner-news
+    position: relative
+    z-index: 2
+    +btn-rounded(50px)
+    margin-top: -20px
+    background-color: #ffffff
+    overflow: hidden
+    box-shadow: 0 0 16px rgba(105,139,253,.3)
+    .news-head
+      width: 160px
+      +btn-rounded(50px)
+    .news-marquee
+      .news-marquee-item
+        margin: 0 2.5rem
+    .news-more
+      .btn
+        width: 80px
+        +btn-rounded(30px)

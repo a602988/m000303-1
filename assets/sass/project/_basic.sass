@@ -8,20 +8,17 @@ html, body
   -webkit-text-size-adjust: 100%
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
+  image-rendering: pixelated
+  -ms-interpolation-mode: nearest-neighbor
   &:lang(zh-Hans)
     +font-family('Noto Sans SC', 'Heiti SC')
-  
-a, a:hover, a:active, a:visited
-  color: inherit
-  text-decoration: none
+
 a
   +media-hover
     +transition-property(color)
     +transition-duration(.3s)
     +transition-timing-function(ease)
 
-img
-  max-width: 100%
 
 /* -------------------------------------------
    common
@@ -35,25 +32,57 @@ img
 .ff-barlow
   font-family: $barlow
 
+// font size
+.f20
+  font-size: 1.25rem !important
+.f18
+  font-size: 1.125rem !important
+.f16
+  font-size: 1rem !important
+.f15
+  font-size: 0.935rem !important
+.f14
+  font-size: 0.875rem !important
+
+// font weight
+.fw-300
+  font-weight: 300 !important
+.fw-400
+  font-weight: 400 !important
+.fw-500
+  font-weight: 500 !important
+.fw-600
+  font-weight: 600 !important
+.fw-700
+  font-weight: 700 !important
+.fw-900
+  font-weight: 900 !important
+
 // text color
 .tc-mainBlue
-  color: $main-blue
+  color: $main-blue !important
 .tc-lightBlue
-  color: $light-blue
+  color: $light-blue !important
 
 // line height
 .lh-100
-  line-height: 1
+  line-height: 1 !important
 .lh-115
-  line-height: 1.15
+  line-height: 1.15 !important
 .lh-125
-  line-height: 1.25
+  line-height: 1.25 !important
 .lh-150
-  line-height: 1.5
+  line-height: 1.5 !important
 .lh-175
-  line-height: 1.75
+  line-height: 1.75 !important
 .lh-200
-  line-height: 2
+  line-height: 2 !important
+
+// letter spacing
+.ls-005
+  letter-spacing: 0.05em !important
+.ls-01
+  letter-spacing: 0.1em !important
 
 // images
 .pic-block
@@ -112,6 +141,17 @@ img.svg
   align-items: center !important
 
 // buttons
+.btn-mBlue-line
+  border: 1px solid rgba($main-blue, .5)
+  color: $main-blue
+  +media-hover
+    +transition-property(background-color, color)
+    +transition-duration(.3s)
+    +transition-timing-function(ease)
+  +media-hover-style
+    background-color: $main-blue
+    color: #ffffff
+
 .btn-silver
   position: relative
   padding: 0
@@ -154,10 +194,9 @@ img.svg
   &:active
     .btn-inner
       +translateY(2px)
-.btn-blueGradient
+.btn-blueGradient, .btn-blueGradient2
   position: relative
   overflow: hidden
-  +v-gradient($light-blue, $main-blue)
   &::before
     content: ''
     position: absolute
@@ -172,6 +211,14 @@ img.svg
   .btn-inner
     position: relative
     color: #ffffff
+  &.btn
+    +media-hover-style
+      &::before
+        opacity: 1
+.btn-blueGradient
+  +v-gradient($light-blue, $main-blue)
+.btn-blueGradient2
+  +v-gradient(#57affd, #506eff)
 
 // msg bubble
 .msg-bubble

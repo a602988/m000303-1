@@ -1,13 +1,37 @@
-<template lang="pug">
-
-</template>
+<template src="@/templates/index.pug" lang="pug"></template>
 
 <script>
-import { mapMutations } from 'vuex'
+import Vue from 'vue'
+
+// swiper
+import { Swiper as SwiperClass, Pagination, Autoplay } from 'swiper/swiper.esm'
+import getAwesomeSwiper from 'vue-awesome-swiper/dist/exporter'
+SwiperClass.use([Pagination, Autoplay])
+Vue.use(getAwesomeSwiper(SwiperClass))
+const { Swiper, SwiperSlide } = getAwesomeSwiper(SwiperClass)
+import 'swiper/swiper-bundle.css'
+
 export default {
+  components: {
+    'marquee-text': () => process.client ? import('@/components/Marquee.vue') : null,
+  },
   data() {
     return {
-      title: this.$t('mainlinks.index')
+      title: this.$t('mainlinks.index'),
+      swiperOptions: {
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+          renderBullet: function(index, className) {
+            const imgsrc = $('.home-banner').find('.swiper-slide').eq(index).find('img').attr('src')
+            return '<span class="'+ className +'"><span class="bullet-thumbnail"><img src="'+ imgsrc+'" alt="" /></span></span>'
+          }
+        }
+      }
     }
   },
   head() {
@@ -15,37 +39,10 @@ export default {
       title: this.title,
     }
   },
-  methods: {
-    ...mapMutations(['detectLogin'])
-  },
-  beforeMount() {
-    this.detectLogin(true)
+  mounted() {
+    
   }
 }
 </script>
 
-<style lang="sass" scoped>
-
-.sample
-  margin: 0 auto
-  min-height: 100vh
-  display: flex
-  justify-content: center
-  align-items: center
-  text-align: center
-  .title
-    display: block
-    font-weight: 300
-    font-size: 100px
-    color: #35495e
-    letter-spacing: 1px
-  .subtitle
-    font-weight: 300
-    font-size: 42px
-    color: #526488
-    word-spacing: 5px
-    padding-bottom: 15px
-  .links
-    padding-top: 15px
-
-</style>
+<style src="@/assets/sass/project/pages/_index.sass" lang="sass"></style>

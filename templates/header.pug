@@ -341,8 +341,8 @@ header.site-header
                 button.btn.p-0.lh-100.user-more-toggle.dropdown-toggle.text-reset#user-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent")
                   .icon-block.icon-fs
                     img.svg(src=imgSvg+"icon-chevron-down.svg" alt="")
-                .user-more-dropdown.dropdown-menu.p-4(aria-labelledby="user-toggle")
-                  .actions.pb-3
+                .user-more-dropdown.dropdown-menu(aria-labelledby="user-toggle")
+                  .actions
                     ul.d-flex-center.list-unstyled
                       mixin actionItem(url, icon, title)
                         li.list-item.text-center
@@ -355,8 +355,7 @@ header.site-header
                       +actionItem('deposit', 'icon-deposit', '存款')
                       +actionItem('transfer', 'icon-transfer', '轉帳')
                       +actionItem('withdraw', 'icon-withdraw', '取款')
-                  .dropdown-divider
-                  .menu.pt-3
+                  .menu
                     ul.list-unstyled
                       mixin menuItem(url, icon, title)
                         li.list-item
@@ -377,6 +376,8 @@ header.site-header
                       +menuItem('trans-record', 'icon-transRecord', '交易紀錄')
                       +menuItem('mail', 'icon-bell', '消息中心')
                         span.count.d-flex-center.mr-2 46
+                  .button.px-2
+                    button.btn.btn-mBlue-line.d-flex-center(type="button" @click="userLogOut()") 登出
           .user-lang.dropdown
             button.btn.p-0.lang-toggle.dropdown-toggle.d-flex-ac#lang-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
               img.lang-flag(:src="require('" + imgPj + "header/flags/' + $i18n.locale + '.png')" alt="")

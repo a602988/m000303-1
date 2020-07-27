@@ -1,14 +1,56 @@
-extends ./layouts/mainLayout.pug
-block title
-  title=webName + '首頁'
-block content
-  block header
-    .banner
-  block main
-    .sample
-      div
-        Logo
-        h1.title nuxt-sample
-        .links
-          a(href="https://nuxtjs.org/" rel="noopener noreferrer" class="button--green") Documentation
-          a(href="https://github.com/nuxt/nuxt.js" rel="noopener noreferrer" class="button--grey") GitHub
+include mixins/_config.pug
+- var imgHome = imgPj + 'home/'
+
+main.main
+  h1.d-none {{ $t('website.title') }}
+
+  // banner
+  .home-section.home-banner
+    .home-banner-swiper(v-swiper:homeBanner="swiperOptions")
+      .swiper-wrapper
+        // 1920 * 700px
+        .swiper-slide.imgFill
+          img(src=imgHome+"banner01.jpg")
+        .swiper-slide.imgFill
+          img(src=imgHome+"banner01.jpg")
+        .swiper-slide.imgFill
+          img(src=imgHome+"banner01.jpg")
+        .swiper-slide.imgFill
+          img(src=imgHome+"banner01.jpg")
+        .swiper-slide.imgFill
+          img(src=imgHome+"banner01.jpg")
+      .swiper-pagination
+    .home-banner-news.container.d-flex-center
+      .news-head.flex-shrink-0.d-flex-center.btn-blueGradient2.mr-3
+        h2.m-0.f20.fw-400.ls-005
+          span.btn-inner 最新公告
+      client-only
+        marquee-text.news-marquee.flex-grow-1(:duration="20")
+          span.news-marquee-item 請會員注意自身資安安全，VWIN絕對不會以任何形式索取會員帳號密碼，與個人資料，(包含FB、Line、簡訊)
+          span.news-marquee-item 請會員注意自身資安安全，VWIN絕對不會以任何形式索取會員帳號密碼，與個人資料，(包含FB、Line、簡訊)
+      .news-more.flex-shrink-0.px-3
+        n-link(:to="localePath('/news')").d-flex-center.btn.btn-blueGradient2.p-0
+          span.btn-inner.f15 更多
+
+  // games
+  .home-section.home-games
+    .section-head.text-center
+      span.title-en.d-block.ff-poppins.text-uppercase.fw-700 Top 1000+ Games
+      h2.title-zh.m-0.fw-900 熱門遊戲
+      p.txt.mt-2.mb-0 你想要的VWIN都有，千萬玩家首選娛樂平台
+    .section-content
+
+  // service
+  .home-section.home-service
+    .section-head.text-center
+      span.title-en.d-block.ff-poppins.text-uppercase.fw-700 Best Online Casino
+      h2.title-zh.m-0.fw-900 優質服務
+      p.txt.mt-2.mb-0 VWIN娛樂平台全心全意為您，提供最優質的服務
+    .section-content
+  
+  // partners
+  .home-section.home-service
+    .section-head.text-center
+      h2.title-zh.m-0.fw-900 官方合作夥伴
+      span.title-en.d-block.ff-poppins.text-uppercase.fw-700.mt-2 Official Partners
+    .section-content

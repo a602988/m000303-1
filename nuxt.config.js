@@ -27,8 +27,7 @@ export default {
       { hid: 'og:image', propety: 'og:image', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+TC:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
   },
   /*
@@ -42,9 +41,9 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    { src: '@/plugins/jquery.js', ssr: false },
-    { src: '@/plugins/bootstrap.js', ssr: false },
-    { src: '@/plugins/imgLiquid.js', ssr: false }
+    { src: '@/plugins/bootstrap.js', mode: 'client', ssr: false },
+    { src: '@/plugins/imgLiquid.js', mode: 'client', ssr: false },
+    { src: '@/plugins/functions.js', mode: 'client', ssr: false }
   ],
   /*
   ** Auto import components

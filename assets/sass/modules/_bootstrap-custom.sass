@@ -19,7 +19,12 @@
 // reset
 *, *:focus
   outline: none
+a, a:hover
+  color: inherit
+a, a:hover, a:active, a:visited
+  text-decoration: none
 img
+  max-width: 100%
   border: none
 input, button, select, optgroup, textarea
   border: none
@@ -31,7 +36,7 @@ input, button, select, optgroup, textarea
     box-shadow: none
 
 // container
-.container, [class*="container-"]
+.container
   width: calc(100% - 100px)
   max-width: 1400px
   padding: 0

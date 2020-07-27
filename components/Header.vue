@@ -1,6 +1,7 @@
 <template src="@/templates/header.pug" lang="pug"></template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -8,6 +9,15 @@ export default {
     }
   },
   props: ['webname'],
+  methods : {
+    ...mapActions(['logout']),
+    userLogOut() {
+      this.logout()
+      this.$nextTick(() => {
+        this.$functions.svg()
+      })
+    }
+  },
   mounted() {
     this.$nextTick(() => {
       $('.ml-category').each(function() {

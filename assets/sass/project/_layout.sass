@@ -4,6 +4,9 @@
 
 .wp
   min-width: $min-width
+.main
+  min-height: calc(100vh - 80px)
+  margin-top: 80px
 
 /* -------------------------------------------
    header
@@ -217,6 +220,7 @@
           display: block
           visibility: hidden
           opacity: 0
+          padding: 30px
           border: none
           box-shadow: 0 3.5px 27.5px rgba(0,0,0,.25)
           font-size: 14px
@@ -279,8 +283,6 @@
               display: none
           .user-more-dropdown
             width: 245px
-            .dropdown-divider
-              border-top-color: #f5f5f5
             .link-btn
               position: relative
               display: block
@@ -308,17 +310,20 @@
                   visibility: visible
                   opacity: 1
             .actions
+              padding-bottom: 20px
               .list-item
                 + .list-item
                   margin-left: 35px
                 .icon-block
                   width: 36px
                   height: 36px
-                  font-size: 20px
+                  font-size: 17px
                 .txt
                   position: relative
                   font-size: 14px
             .menu
+              border-top: 1px solid rgba(228,228,228,.3)
+              padding-top: 20px
               .list-item
                 + .list-item
                   margin-top: 20px
@@ -331,6 +336,7 @@
                   color: $main-blue
                   +h-gradient(#FAFAFA, #F9F9F9)
                   box-shadow: 3px 3px 5px rgba(0,0,0,.075)
+                  font-size: 20px
                 .title
                   +flex-grow(1)
                   .txt
@@ -338,9 +344,15 @@
                   .count
                     +btn-rounded(18px)
                     padding: 0 7.5px
-                    background-color: $light-blue
+                    +v-gradient($light-blue, #97CCFD)
                     color: #ffffff
                     font-size: 11px
+            .button
+              margin-top: 25px
+              .btn
+                width: 100%
+                +btn-rounded(40px)
+                font-size: 14px
           &.show
             .user-more-dropdown
               margin-top: 10px
@@ -412,3 +424,54 @@
           .ml-category
             .ml-tt
               padding: 0 15px
+
+/* -------------------------------------------
+   footer
+  ------------------------------------------ */
+
+.site-footer
+  background-color: #333333
+  color: #808080
+  .list-item
+    mix-blend-mode: screen
+  .footer-top
+    background-color: #363636
+    border-bottom: 1px solid #4E4E4E
+    a
+      opacity: .3
+      +media-hover
+        +transition-property(opacity)
+      +media-hover-style
+        opacity: 1
+  .footer-main
+    padding-top: 40px
+    padding-bottom: 75px
+  .footer-certif
+    .list-item
+      + .list-item
+        margin-left: 75px
+      .pic
+        height: 45px
+      a
+        +media-hover
+          .txt
+            +transition(color .3s ease)
+        +media-hover-style
+          .txt
+            color: #e3e3e3
+  .footer-links
+    .list-item
+      + .list-item
+        &::before
+          content: ''
+          display: inline-block
+          vertical-align: -2px
+          width: 1px
+          height: 1rem
+          margin: 0 1.75rem
+          background-color: #666666
+      a
+        color: #e3e3e3
+        font-weight: 300
+        +media-hover-style
+          color: #ffffff

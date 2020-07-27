@@ -1,0 +1,66 @@
+include mixins/_config.pug
+
+//- footer
+footer.site-footer
+  .footer-top
+    .footer-inner.container
+      ul.d-flex-center.flex-wrap.text-center.list-unstyled.py-2
+        mixin footerItem(url)
+          li.mx-3.my-2
+            a(href=url target="_blank").d-block.pic-block
+              block
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo01.png")
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo02.png")
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo03.png")
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo04.png")
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo05.png")
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo06.png")
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo07.png")
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo08.png")
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo09.png")
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo10.png")
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo11.png")
+        +footerItem("javascript:void(0)")
+          img(src=imgPj+"footer/logo12.png")
+  .footer-main
+    .footer-inner.container.d-flex-ac.flex-column.text-center
+      p.f15.m-0 VWIN擁有歐洲法院管理局（MGA），英國GC監督委員會（賭博委員會）和菲律賓政府競猜委員會（PAGCOR）提交的合法執照。
+        br
+        | 註冊於英屬維爾京群島，是受國際協會認可的合法公司。進行註冊 並娛樂前，請確保您年滿18周歲！
+      ul.footer-certif.d-flex-center.flex-wrap.list-unstyled.mt-4
+        mixin footerCertif(url, title)
+          li.list-item
+            a(href=url target="_blank")
+              span.pic.d-flex-center
+                block
+              span.txt.d-block.mt-2.f14= title
+        +footerCertif('javascript:void(0)', '英屬維爾京群島(BVI)認證')
+          img(src=imgPj+"footer/certif01.png" alt="")
+        +footerCertif('javascript:void(0)', '英國GC監督委員會')
+          img(src=imgPj+"footer/certif02.png" alt="")
+        +footerCertif('javascript:void(0)', '普通許可證(MGA)認證')
+          img(src=imgPj+"footer/certif03.png" alt="")
+        +footerCertif('javascript:void(0)', '菲律賓(PAGCOR)監督競猜許可證')
+          img(src=imgPj+"footer/certif04.png" alt="")
+      ul.footer-links.d-flex-center.flex-wrap.list-unstyled.mt-5
+        mixin footerLink(url, title)
+          li.list-item
+            n-link(:to="localePath('" + url +"')")= title
+        +footerLink('/help', '如何存款')
+        +footerLink('/help', '如何取款')
+        +footerLink('/disclaimer', '免責聲明')
+        +footerLink('/terms', '服務條款')
+        +footerLink('/privacy', '隱私政策')
+        +footerLink('/', '責任博彩')
+      p.f14.mt-4 ©2020 VWIN GAME. All Rights Reserves.
