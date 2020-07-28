@@ -1,4 +1,5 @@
-import webpack from 'webpack';
+import webpack from 'webpack'
+import SpriteLoaderPlugin from 'svg-sprite-loader/plugin'
 
 export default {
   /*
@@ -42,8 +43,7 @@ export default {
   */
   plugins: [
     { src: '@/plugins/bootstrap.js', mode: 'client', ssr: false },
-    { src: '@/plugins/imgLiquid.js', mode: 'client', ssr: false },
-    { src: '@/plugins/functions.js', mode: 'client', ssr: false }
+    { src: '@/plugins/global.js', mode: 'client', ssr: false }
   ],
   /*
   ** Auto import components
@@ -99,6 +99,20 @@ export default {
   */
   build: {
     extractCSS: true,
+    extend(config, ctx) {
+      if (ctx.isDev && ctx.isClient) {
+        // svg loader
+        const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+        svgRule.test = /\.(png|jpe?g|gif|webp)$/
+        config.module.rules.push({
+          test: /\.svg$/,
+          loader: 'svg-sprite-loader',
+          options: {
+            symbolId: '[name]'
+          }
+        })
+      }
+    },
     plugins: [
       new webpack.ProvidePlugin({
         $: 'jquery',
@@ -106,6 +120,7 @@ export default {
         'window.jQuery': 'jquery',
         'window.$': 'jquery',
       }),
+      new SpriteLoaderPlugin()
     ]
   }
 }

@@ -33,7 +33,7 @@ export default {
           clickable: true,
           renderBullet: function(index, className) {
             const imgsrc = $('.home-banner').find('.swiper-slide').eq(index).find('img').attr('src')
-            return '<span class="'+ className +'"><span class="bullet-thumbnail"><img src="'+ imgsrc+'" alt="" /></span></span>'
+            return '<span class="'+ className +'"><span class="bullet-thumbnail"><img src="'+ imgsrc +'" alt="" /></span></span>'
           }
         }
       }

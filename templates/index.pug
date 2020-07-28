@@ -9,21 +9,19 @@ main.main
     .home-banner-swiper(v-swiper:homeBanner="swiperOptions")
       .swiper-wrapper
         // 1920 * 700px
-        .swiper-slide.imgFill
-          img(src=imgHome+"banner01.jpg")
-        .swiper-slide.imgFill
-          img(src=imgHome+"banner01.jpg")
-        .swiper-slide.imgFill
-          img(src=imgHome+"banner01.jpg")
-        .swiper-slide.imgFill
-          img(src=imgHome+"banner01.jpg")
-        .swiper-slide.imgFill
-          img(src=imgHome+"banner01.jpg")
+        mixin swiperSlide(imgname)
+          .swiper-slide.imgFill(:style="{'background-image': 'url(' + require('" + imgHome+imgname + "') + ')'}")
+            img(src=imgHome+imgname).d-none
+        +swiperSlide('banner01.jpg')
+        +swiperSlide('banner01.jpg')
+        +swiperSlide('banner01.jpg')
+        +swiperSlide('banner01.jpg')
+        +swiperSlide('banner01.jpg')
       .swiper-pagination
       .swiper-button.swiper-button-prev.icon-fs
-        img.svg(src=imgHome+"swiper-prev.svg")
+        img-svg(name="swiper-prev")
       .swiper-button.swiper-button-next.icon-fs
-        img.svg(src=imgHome+"swiper-next.svg")
+        img-svg(name="swiper-next")
     .home-banner-news.container.d-flex-center
       .news-head.flex-shrink-0.d-flex-center.btn-blueGradient2.mr-3
         h2.m-0.f20.fw-400.ls-005
@@ -56,7 +54,8 @@ main.main
                   n-link(:to="localePath('"+url+"')" style="background-color:"+color).btn.text-white.p-0
                     span.btn-inner.d-flex-center.px-4
                       span.icon-block.f24.mr-2
-                        img.svg(src=imgHome+"icon-"+icon+".svg" alt="")
+                        //- img.svg(src=imgHome+"icon-"+icon+".svg" alt="")
+                        img-svg(name="icon-"+icon)
                       span.txt.f18= title
               +listItem('/sports', '#0051D1', 'sports', '體育')
               +listItem('/live', '#C18847', 'live', '真人')

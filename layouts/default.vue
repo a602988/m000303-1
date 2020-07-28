@@ -20,31 +20,6 @@ export default {
   components: {
     'site-header': Header,
     'site-footer': Footer
-  },
-  methods: {
-    init(el) {
-      el.$functions.svg()
-      el.$functions.imgFill()
-      // img draggable false
-      $('img').on('dragstart', function(e) {
-        e.preventDefault()
-      })
-    }
-  },
-  mounted() {
-    this.$nextTick(() => {
-      this.init(this)
-    })
-  },
-  watch: {
-    '$route'(to, from) {
-      const $this = this
-      this.$nextTick(() => {
-        setTimeout(() => {
-          $this.init($this)
-        }, 100)
-      })
-    }
   }
 }
 </script>
