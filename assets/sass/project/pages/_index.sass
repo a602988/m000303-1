@@ -5,25 +5,81 @@
 // swiper variables  
 \:root
   --swiper-theme-color: #335CB9
+  --swiper-navigation-color: #ffffff
 
 // home section
 .home-section
-  margin-bottom: 70px
+  margin-bottom: 75px
   .section-head
+    position: relative
+    z-index: 2
+    padding-bottom: 30px
     color: #41425E
+    &::before, &::after
+      content: ''
+      position: absolute
+      bottom: 10px
+      display: block
+      width: 37.5px
+      height: 70px
+      border-color: #DFE8FF
+      border-style: solid
+      border-top: none
+      border-bottom: none
+    &::before
+      left: calc(50% - 235px)
+      border-left-width: 20px
+      border-right-width: 10px
+      +skew(52.75, 0)
+      +transform-origin(bottom right)
+    &::after
+      right: calc(50% - 235px)
+      border-left-width: 10px
+      border-right-width: 20px
+      +skew(-52.75, 0)
+      +transform-origin(bottom left)
+    .section-head-inner
+      position: relative
+      z-index: 2
     .title-en
       font-size: 24px
     .title-zh
       font-size: 40px
       color: #58a9fe
+  .section-content
+    position: relative
+    margin-top: -60px
+    padding-top: 60px
+    border-radius: 30px
+    overflow: hidden
+    box-shadow: inset 0 0 30px rgba(132,167,255,.55)
+    &::before, &::after
+      content: ''
+      position: absolute
+      width: 640px
+      left: calc(50% - 320px)
+      top: 0
+      border-top-width: 60px
+      border-top-style: solid
+      border-left: 80px solid transparent
+      border-right: 80px solid transparent
+    &::before
+      border-top-color: rgba(132,167,255,.55)
+      +filter(blur(15px))
+    &::after
+      border-top-color: #ffffff
+    .section-content-inner
+      padding: 30px
 
-// home banner
+// banner
 .home-banner
   .home-banner-swiper
     position: relative
   .swiper-wrapper
     .swiper-slide
       height: 700px
+      image-rendering: pixelated
+      -ms-interpolation-mode: nearest-neighbor
   .swiper-pagination
     position: absolute
     left: 0
@@ -35,10 +91,12 @@
       height: 10px
       margin: 0 15px
       opacity: 1
+      cursor: pointer
       &:not(.swiper-pagination-bullet-active)
         background-color: #A6A6A6
       .bullet-thumbnail
         position: absolute
+        z-index: 1
         left: -65px
         bottom: calc(100% + 10px)
         display: block
@@ -57,8 +115,14 @@
         .bullet-thumbnail
           visibility: visible
           opacity: 1
-  .news-marquee
-    overflow: hidden
+  .swiper-button
+    font-size: 55px
+    &::after
+      display: none
+  .swiper-button-prev
+    left: 80px
+  .swiper-button-next
+    right: 80px
   .home-banner-news
     position: relative
     z-index: 2
@@ -71,9 +135,132 @@
       width: 160px
       +btn-rounded(50px)
     .news-marquee
+      overflow: hidden
       .news-marquee-item
         margin: 0 2.5rem
     .news-more
       .btn
         width: 80px
         +btn-rounded(30px)
+
+// games
+.home-games
+  .buttons
+    .list-item
+      .btn
+        position: relative
+        +btn-rounded(50px)
+        overflow: hidden
+        box-shadow: 8px 8px 12px rgba(0,0,0,.2)
+        &::before
+          content: ''
+          position: absolute
+          top: 0
+          left: 0
+          right: 0
+          bottom: 0
+          display: block
+          +v-gradient(rgba(0,0,0,0), rgba(0,0,0,.25))
+        .btn-inner
+          height: 100%
+        .icon-block
+          svg
+            max-width: 30px
+            height: 1em
+        +media-hover
+          +transition-property(box-shadow)
+        +media-hover-style
+          box-shadow: 8px 8px 12px rgba(0,0,0,.35)
+  .content
+    .pic-block
+      width: 50%
+      max-width: 538px
+      margin-right: 60px
+    .txt-block
+      color: #012E49
+      .title
+        font-size: 72px
+        .en
+          -webkit-background-clip: text
+          background-clip: text
+          color: transparent
+          +v-gradient($lighter-blue 30%, $main-blue)
+          +media-ie
+            background: none
+            color: $main-blue
+      .entries
+        
+
+// service
+.home-service
+  h3.zh
+    color: #282942
+    font-size: 21px
+  .section-content
+    .section-content-inner
+      padding-top: 45px
+      padding-bottom: 65px
+    .list-item
+      + .list-item
+        margin-left: 70px
+      .circle
+        position: relative
+        border-radius: 50%
+        overflow: hidden
+        box-shadow: 0 0 28.5px rgba(1,54,160,.35)
+        .circle-inner
+          position: absolute
+          top: 0
+          left: 0
+          right: 0
+          bottom: 0
+          color: #ffffff
+        .icon-block
+          width: 80px
+          height: 80px
+        .txt
+          margin-top: -20px
+          margin-right: -0.75em
+          text-shadow: .5px .5px 6px rgba(1,45,89,.5)
+          .num
+            font-size: 60px
+      .caption
+        .en
+          color: rgba(128,128,128,.9)
+  .section-addition
+    .addition-item
+      position: relative
+      height: 100%
+      background-color: #ffffff
+      border-radius: 35px
+      box-shadow: inset 0 0 40px rgba(132,167,255,.9)
+      &::before
+        content: ''
+        position: absolute
+        top: -2.5px
+        left: -2.5px
+        right: -2.5px
+        bottom: -2.5px
+        background: url('~assets/images/project/home/border.png') no-repeat
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+          background: url('~assets/images/project/home/border-2x.png') no-repeat
+      .addition-item-inner
+        position: relative
+        z-index: 1
+        height: 172px
+        padding: 30px 60px
+      .pic
+        width: 105px
+        height: 105px
+        margin-right: 40px
+
+// service
+.home-partners
+  .list-item
+    a
+      +media-hover
+        img
+          +transition(transform .3s ease)
+      +media-hover-style
+        img
+          +scale(1.05)

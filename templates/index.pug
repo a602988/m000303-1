@@ -20,37 +20,162 @@ main.main
         .swiper-slide.imgFill
           img(src=imgHome+"banner01.jpg")
       .swiper-pagination
+      .swiper-button.swiper-button-prev.icon-fs
+        img.svg(src=imgHome+"swiper-prev.svg")
+      .swiper-button.swiper-button-next.icon-fs
+        img.svg(src=imgHome+"swiper-next.svg")
     .home-banner-news.container.d-flex-center
       .news-head.flex-shrink-0.d-flex-center.btn-blueGradient2.mr-3
         h2.m-0.f20.fw-400.ls-005
           span.btn-inner 最新公告
-      client-only
-        marquee-text.news-marquee.flex-grow-1(:duration="20")
-          span.news-marquee-item 請會員注意自身資安安全，VWIN絕對不會以任何形式索取會員帳號密碼，與個人資料，(包含FB、Line、簡訊)
-          span.news-marquee-item 請會員注意自身資安安全，VWIN絕對不會以任何形式索取會員帳號密碼，與個人資料，(包含FB、Line、簡訊)
+      .news-marquee.flex-grow-1
+        client-only(placeholder="Loading...")
+          marquee-text(:duration="20")
+            span.news-marquee-item 請會員注意自身資安安全，VWIN絕對不會以任何形式索取會員帳號密碼，與個人資料，(包含FB、Line、簡訊)
+            span.news-marquee-item 請會員注意自身資安安全，VWIN絕對不會以任何形式索取會員帳號密碼，與個人資料，(包含FB、Line、簡訊)
       .news-more.flex-shrink-0.px-3
         n-link(:to="localePath('/news')").d-flex-center.btn.btn-blueGradient2.p-0
           span.btn-inner.f15 更多
 
-  // games
-  .home-section.home-games
-    .section-head.text-center
-      span.title-en.d-block.ff-poppins.text-uppercase.fw-700 Top 1000+ Games
-      h2.title-zh.m-0.fw-900 熱門遊戲
-      p.txt.mt-2.mb-0 你想要的VWIN都有，千萬玩家首選娛樂平台
-    .section-content
+  // primary
+  .home-primary.container
 
-  // service
-  .home-section.home-service
-    .section-head.text-center
-      span.title-en.d-block.ff-poppins.text-uppercase.fw-700 Best Online Casino
-      h2.title-zh.m-0.fw-900 優質服務
-      p.txt.mt-2.mb-0 VWIN娛樂平台全心全意為您，提供最優質的服務
-    .section-content
-  
-  // partners
-  .home-section.home-service
-    .section-head.text-center
-      h2.title-zh.m-0.fw-900 官方合作夥伴
-      span.title-en.d-block.ff-poppins.text-uppercase.fw-700.mt-2 Official Partners
-    .section-content
+    // games
+    .home-section.home-games
+      .section-head
+        .section-head-inner.text-center
+          span.title-en.d-block.ff-poppins.text-uppercase.fw-700 Top 1000+ Games
+          h2.title-zh.m-0.fw-900 熱門遊戲
+          p.txt.mt-2.mb-0 你想要的VWIN都有，千萬玩家首選娛樂平台
+      .section-content
+        .section-content-inner
+          .buttons
+            ul.d-flex-center.list-unstyled.mx-n2
+              mixin listItem(url, color, icon, title)
+                li.list-item.mx-2
+                  n-link(:to="localePath('"+url+"')" style="background-color:"+color).btn.text-white.p-0
+                    span.btn-inner.d-flex-center.px-4
+                      span.icon-block.f24.mr-2
+                        img.svg(src=imgHome+"icon-"+icon+".svg" alt="")
+                      span.txt.f18= title
+              +listItem('/sports', '#0051D1', 'sports', '體育')
+              +listItem('/live', '#C18847', 'live', '真人')
+              +listItem('/lottery', '#A2D834', 'lottery', '彩票')
+              +listItem('/slot', '#FFA518', 'slot', '電子')
+              +listItem('/fishing', '#542A81', 'fishing', '捕魚')
+              +listItem('/chess', '#F02D55', 'chess', '棋牌')
+          .content.d-flex-center.mt-5.py-4
+            .pic-block.flex-shrink-0
+              img(src=imgHome+"games-pic.png" alt="")
+            .txt-block
+              h3.title.lh-100
+                span.zh.d-block.fw-700 體育賽事
+                span.en.d-block.ff-barlow.fw-500.text-uppercase Sports Events
+              p.txt 涵蓋全球賽事，多元競猜玩法，賽事直播頻道免費看，讓您親臨現場觀賽樂在其中。
+              .entries.mt-5.d-flex-ac
+                .entry
+                  a.d-block(href="javascript:void(0)" target="_blank")
+                    span.icon-block
+                      img(src=imgHome+"partner02.png" alt="")
+                    span.txt SUPER體育
+                .entry
+                  a.d-block(href="javascript:void(0)" target="_blank")
+                    span.icon-block
+                      img(src=imgHome+"partner01.png" alt="")
+                    span.txt 365體育
+
+    // service
+    .home-section.home-service
+      .section-head
+        .section-head-inner.text-center
+          span.title-en.d-block.ff-poppins.text-uppercase.fw-700 Best Online Casino
+          h2.title-zh.m-0.fw-900 優質服務
+          p.txt.mt-2.mb-0 VWIN娛樂平台全心全意為您，提供最優質的服務
+      .section-content
+        .section-content-inner
+          ul.d-flex-center.list-unstyled
+            mixin listItem(color, icon, num, unit)
+              li.list-item.d-flex-ac.flex-column.text-center
+                .circle
+                  .circle-bg
+                    img(src=imgHome+"circle-"+color+".png" srcset=imgHome+"circle-"+color+".png 1x, "+imgHome+"circle-"+color+"-2x.png 2x" alt="")
+                  .circle-inner.d-flex-center.flex-column
+                    span.d-flex-center.icon-block
+                      img(src=imgHome+"icon-"+icon+".png" srcset=imgHome+"icon-"+icon+".png 1x, "+imgHome+"icon-"+icon+"-2x.png 2x" alt="")
+                    span.d-block.txt
+                      span.num.ff-sans.fw-700= num
+                      span.unit.f20.ml-1= unit
+                .caption.mt-3
+                  block
+            +listItem('golden', 'deposit', '60', '秒')
+              h3.zh.fw-700 平均存款時間 60秒
+              span.d-block.en.f18 AVERAGE TIME OF DEPOSIT
+            +listItem('blue', 'withdraw', '90', '秒')
+              h3.zh.fw-700 平均提領時間 60秒
+              span.d-block.en.f18 AVERAGE TIME OF WITHDRAW
+            +listItem('golden', 'cooperative', '20', '+')
+              h3.zh.fw-700 官方合作夥伴 20+
+              span.d-block.en.f18 COOPERATIVE PLATFORM
+            +listItem('blue', 'support', '365', '+')
+              h3.zh.fw-700 全年服務不打烊 365+
+              span.d-block.en.f18 24/7 SUPPORT
+      .section-addition.row.mt-2.mx-n2
+        mixin addItem(imgName, title, en, txt)
+          .col-6.p-2
+            .addition-item
+              .addition-item-inner.d-flex-ac
+                .pic.d-flex-center.flex-shrink-0
+                  img(src=imgHome+"img-"+imgName+".png" srcset=imgHome+"img-"+imgName+".png 1x, "+imgHome+"img-"+imgName+"-2x.png 2x" alt="")
+                .content
+                  h3.zh.fw-700.mb-1= title
+                  span.en.d-block.ff-sans.f18.fw-700.text-uppercase.tc-cerulean.mb-2= en
+                  p.txt.mb-0= txt
+        +addItem('withdrawal', '極速存提轉款', 'Fast Withdrawal', '存款、提領、轉帳超快速，入帳無延遲。')
+        +addItem('games', '最全娛樂體驗', '1000+ Games', '存款、提領、轉帳超快速，入帳無延遲。')
+        +addItem('protection', '加密安全管理', 'Always-on Protection', '獨家開發加密技術，資料保障最完善。')
+        +addItem('devices', '支持所有行動設備', 'Support for all Devices', '不管使用任何設備，讓您娛樂投注隨心所欲！')
+
+    // partners
+    .home-section.home-partners
+      .section-head
+        .section-head-inner.text-center
+          h2.title-zh.m-0.fw-900 官方合作夥伴
+          span.title-en.d-block.ff-poppins.text-uppercase.fw-700.mt-2 Official Partners
+      .section-content
+        .section-content-inner
+          ul.d-flex-center.flex-wrap.list-unstyled.py-4
+            li.list-item.m-4
+              a(href="javascript:void(0)" target="_blank").d-block
+                img(src=imgHome+"partner01.png")
+            li.list-item.m-4
+              a(href="javascript:void(0)" target="_blank").d-block
+                img(src=imgHome+"partner02.png")
+            li.list-item.m-4
+              a(href="javascript:void(0)" target="_blank").d-block
+                img(src=imgHome+"partner03.png")
+            li.list-item.m-4
+              a(href="javascript:void(0)" target="_blank").d-block
+                img(src=imgHome+"partner04.png")
+            li.list-item.m-4
+              a(href="javascript:void(0)" target="_blank").d-block
+                img(src=imgHome+"partner05.png")
+            li.list-item.m-4
+              a(href="javascript:void(0)" target="_blank").d-block
+                img(src=imgHome+"partner06.png")
+            li.list-item.m-4
+              a(href="javascript:void(0)" target="_blank").d-block
+                img(src=imgHome+"partner07.png")
+            li.list-item.m-4
+              a(href="javascript:void(0)" target="_blank").d-block
+                img(src=imgHome+"partner08.png")
+            li.list-item.m-4
+              a(href="javascript:void(0)" target="_blank").d-block
+                img(src=imgHome+"partner09.png")
+            li.list-item.m-4
+              a(href="javascript:void(0)" target="_blank").d-block
+                img(src=imgHome+"partner10.png")
+            li.list-item.m-4
+              a(href="javascript:void(0)" target="_blank").d-block
+                img(src=imgHome+"partner11.png")
+
+  // end primary

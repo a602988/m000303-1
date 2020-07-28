@@ -43,6 +43,11 @@
   @media (orientation: portrait)
     @content
 
+// media IE only
+=media-ie
+  @media (-ms-high-contrast: none), (-ms-high-contrast: active)
+    @content
+
 // --------------------
 // prefixes
 // --------------------

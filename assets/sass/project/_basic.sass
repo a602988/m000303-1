@@ -8,8 +8,6 @@ html, body
   -webkit-text-size-adjust: 100%
   -moz-osx-font-smoothing: grayscale
   -webkit-font-smoothing: antialiased
-  image-rendering: pixelated
-  -ms-interpolation-mode: nearest-neighbor
   &:lang(zh-Hans)
     +font-family('Noto Sans SC', 'Heiti SC')
 
@@ -33,16 +31,20 @@ a
   font-family: $barlow
 
 // font size
-.f20
-  font-size: 1.25rem !important
-.f18
-  font-size: 1.125rem !important
-.f16
-  font-size: 1rem !important
-.f15
-  font-size: 0.935rem !important
 .f14
   font-size: 0.875rem !important
+.f15
+  font-size: 0.935rem !important
+.f16
+  font-size: 1rem !important
+.f18
+  font-size: 1.125rem !important
+.f20
+  font-size: 1.25rem !important
+.f24
+  font-size: 1.5rem !important
+.f28
+  font-size: 1.75rem !important
 
 // font weight
 .fw-300
@@ -63,6 +65,8 @@ a
   color: $main-blue !important
 .tc-lightBlue
   color: $light-blue !important
+.tc-cerulean
+  color: $cerulean-blue !important
 
 // line height
 .lh-100
@@ -141,6 +145,11 @@ img.svg
   align-items: center !important
 
 // buttons
+.btn
+  .btn-inner
+    position: relative
+    z-index: 1
+
 .btn-mBlue-line
   border: 1px solid rgba($main-blue, .5)
   color: $main-blue
@@ -173,8 +182,6 @@ img.svg
     +translateY(4px)
     +h-gradient(#BABABA, #FFFFFF, #BABABA, #FFFFFF, #BABABA)
   .btn-inner
-    position: relative
-    z-index: 1
     +flexbox
     +justify-content-center
     +align-items-center

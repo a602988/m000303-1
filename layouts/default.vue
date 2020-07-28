@@ -5,10 +5,6 @@
     <site-footer></site-footer>
 </template>
 
-<style lang="sass">
-// global style
-</style>
-
 <script>
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
@@ -25,11 +21,30 @@ export default {
     'site-header': Header,
     'site-footer': Footer
   },
+  methods: {
+    init(el) {
+      el.$functions.svg()
+      el.$functions.imgFill()
+      // img draggable false
+      $('img').on('dragstart', function(e) {
+        e.preventDefault()
+      })
+    }
+  },
   mounted() {
     this.$nextTick(() => {
-      this.$functions.svg()
-      this.$functions.imgFill()
+      this.init(this)
     })
   },
+  watch: {
+    '$route'(to, from) {
+      const $this = this
+      this.$nextTick(() => {
+        setTimeout(() => {
+          $this.init($this)
+        }, 100)
+      })
+    }
+  }
 }
 </script>

@@ -168,6 +168,21 @@ export default {
 ```
 &nbsp;
 
+## 路徑寫法
+> vue/js/pug 內
+```js
+// 來源為 assets 或其他資料夾
+'@/assets/images/path/to/demo.jpg'
+'~assets/images/path/to/demo.jpg'
+
+// 來源為 static 資料夾
+'/path/to/demo.jpg' // 不須加static
+```
+> css 內
+```css
+background-image: url('~assets/path/to/demo.jpg')
+```
+
 ## 已知問題
 &nbsp;
 

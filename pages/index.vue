@@ -4,9 +4,9 @@
 import Vue from 'vue'
 
 // swiper
-import { Swiper as SwiperClass, Pagination, Autoplay } from 'swiper/swiper.esm'
+import { Swiper as SwiperClass, Navigation, Pagination, Autoplay } from 'swiper/swiper.esm'
 import getAwesomeSwiper from 'vue-awesome-swiper/dist/exporter'
-SwiperClass.use([Pagination, Autoplay])
+SwiperClass.use([Navigation, Pagination, Autoplay])
 Vue.use(getAwesomeSwiper(SwiperClass))
 const { Swiper, SwiperSlide } = getAwesomeSwiper(SwiperClass)
 import 'swiper/swiper-bundle.css'
@@ -19,9 +19,14 @@ export default {
     return {
       title: this.$t('mainlinks.index'),
       swiperOptions: {
+        loop: true,
         autoplay: {
           delay: 5000,
           disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         },
         pagination: {
           el: '.swiper-pagination',

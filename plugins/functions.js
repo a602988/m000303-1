@@ -1,5 +1,9 @@
+// global functions
+
 import Vue from 'vue'
 Vue.prototype.$functions = {
+
+  // img to svg
   svg: function() {
     $('img.svg').each(function () {
       const $img = $(this),
@@ -22,7 +26,10 @@ Vue.prototype.$functions = {
       }, 'xml');
     });
   },
+
+  // img liquid
   imgFill: function() {
     $('.imgFill').imgLiquid()
   }
+
 }

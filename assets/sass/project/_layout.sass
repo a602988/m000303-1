@@ -23,7 +23,7 @@
     position: relative
     +h-gradient(#4e65ff, #74E7FB 68%, #688ffc)
     color: #ffffff
-    box-shadow: 0 3px 20px rgba(0,0,0,.1)
+    box-shadow: 0 3px 20px rgba(0,0,0,.15)
     &::before
       content: ''
       position: absolute
@@ -148,7 +148,7 @@
                 background-clip: text
                 color: transparent
                 +v-gradient($lighter-blue 30%, $main-blue)
-                @media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+                +media-ie
                   background: none
                   color: $main-blue
               .txt
