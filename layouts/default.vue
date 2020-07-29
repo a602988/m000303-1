@@ -3,7 +3,7 @@
     <site-header :webname="$t('website.title')" />
     <Nuxt />
     <site-footer />
-    <side-menu />
+    <side-menu v-on:scroll.native="sideMenuOnScroll()" />
 </template>
 
 <script>
@@ -23,6 +23,15 @@ export default {
     'site-header': Header,
     'site-footer': Footer,
     'side-menu': SideMenu
+  },
+  computed: {
+    sideMenuOnScroll() {
+      if ( $(window).scrollTop() >= 200 ) {
+        $('.side-menu').fadeIn()
+      } else {
+        $('.side-menu').fadeOut()
+      }
+    }
   }
 }
 </script>
