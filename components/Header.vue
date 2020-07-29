@@ -3,19 +3,11 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
-  data() {
-    return {
-      userLogin: false,
-    }
-  },
   props: ['webname'],
   methods : {
     ...mapActions(['logout']),
     userLogOut() {
       this.logout()
-      this.$nextTick(() => {
-        this.$functions.svg()
-      })
     }
   },
   mounted() {

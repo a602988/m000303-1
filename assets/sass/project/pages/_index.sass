@@ -145,6 +145,13 @@
 
 // games
 .home-games
+  .section-content
+    position: relative
+    .section-content-bg
+      .imgFill
+        background-position: bottom
+    .section-content-inner
+      position: relative
   .buttons
     .list-item
       .btn
@@ -189,7 +196,9 @@
             background: none
             color: $main-blue
       .entries
-        
+        .game-entry
+          + .game-entry
+            margin-left: 15px
 
 // service
 .home-service

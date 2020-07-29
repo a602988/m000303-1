@@ -10,8 +10,7 @@ main.main
       .swiper-wrapper
         // 1920 * 700px
         mixin swiperSlide(imgname)
-          .swiper-slide.imgFill(:style="{'background-image': 'url(' + require('" + imgHome+imgname + "') + ')'}")
-            img(src=imgHome+imgname).d-none
+          img-fill.swiper-slide(:src="require('" + imgHome + imgname + "')" hasImg=true)
         +swiperSlide('banner01.jpg')
         +swiperSlide('banner01.jpg')
         +swiperSlide('banner01.jpg')
@@ -46,6 +45,8 @@ main.main
           h2.title-zh.m-0.fw-900 熱門遊戲
           p.txt.mt-2.mb-0 你想要的VWIN都有，千萬玩家首選娛樂平台
       .section-content
+        .section-content-bg
+          img-fill.pic-fill(:src="require('" + imgHome + "games-bg.png" + "')")
         .section-content-inner
           .buttons
             ul.d-flex-center.list-unstyled.mx-n2
@@ -72,16 +73,17 @@ main.main
                 span.en.d-block.ff-barlow.fw-500.text-uppercase Sports Events
               p.txt 涵蓋全球賽事，多元競猜玩法，賽事直播頻道免費看，讓您親臨現場觀賽樂在其中。
               .entries.mt-5.d-flex-ac
-                .entry
-                  a.d-block(href="javascript:void(0)" target="_blank")
-                    span.icon-block
-                      img(src=imgHome+"partner02.png" alt="")
-                    span.txt SUPER體育
-                .entry
-                  a.d-block(href="javascript:void(0)" target="_blank")
-                    span.icon-block
-                      img(src=imgHome+"partner01.png" alt="")
-                    span.txt 365體育
+                mixin entry(url, title, img1, img2)
+                  .game-entry
+                    a.d-block.text-center(href=url target="_blank")
+                      span.d-block.btn-square
+                        span.btn-inner
+                          span.icon-block
+                            img.for-display(src=imgHome + img1 alt="")
+                            img.for-hover(src=imgHome + img2 alt="")
+                      span.txt.d-block.mt-3= title
+                +entry('javascript:void(0)', 'SUPER體育', 'sports01.png', 'sports01-hover.png')
+                +entry('javascript:void(0)', '365體育', 'sports02.png', 'sports02-hover.png')
 
     // service
     .home-section.home-service

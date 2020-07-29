@@ -1,13 +1,15 @@
 <template lang="pug">
   .wp
-    <site-header :webname="$t('website.title')"></site-header>
+    <site-header :webname="$t('website.title')" />
     <Nuxt />
-    <site-footer></site-footer>
+    <site-footer />
+    <side-menu />
 </template>
 
 <script>
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import SideMenu from '@/components/SideMenu'
 export default {
   head() {
     return {
@@ -19,7 +21,8 @@ export default {
   },
   components: {
     'site-header': Header,
-    'site-footer': Footer
+    'site-footer': Footer,
+    'side-menu': SideMenu
   }
 }
 </script>

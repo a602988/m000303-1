@@ -1,23 +1,41 @@
-<template></template>
 <script>
 export default {
   props: {
-    tag: {
-      type: String,
-      default: 'div'
-    },
     src: {
       type: String,
       required: true
+    },
+    hasImg: {
+      type: Boolean,
+      default: false
     }
   },
-  render: function (createElement) {
-    let data = {
-      'style': {
-        'background-image': 'url(' + this.src + ')'
-      }
-    }
-    return createElement(this.tag, [this.$slots.default])
-  },
+  render (h) {
+    return h(
+      'div',
+      { 
+        class: { 'imgFill': true },
+        style: {
+          backgroundImage: 'url(' + this.src + ')'
+        }
+      },
+      [
+        this.hasImg ?
+        h('img', {
+          attrs: {
+            src: this.src
+          }
+        })
+        : null
+      ]
+    )
+  }
 }
 </script>
+<style lang="sass" scoped>
+.imgFill
+  background-size: cover
+  background-position: center center
+  img
+    display: none
+</style>

@@ -187,7 +187,6 @@ background-image: url('~assets/path/to/demo.jpg')
 &nbsp;
 
 ## 線上文檔
-自己玩，更好玩 (๑•̀ㅂ•́)و✧
 
 * [Nuxt.js](https://nuxtjs.org/)
 * [Vue.js](https://vuejs.org/)

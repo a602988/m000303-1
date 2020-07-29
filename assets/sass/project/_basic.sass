@@ -17,7 +17,6 @@ a
     +transition-duration(.3s)
     +transition-timing-function(ease)
 
-
 /* -------------------------------------------
    common
   ------------------------------------------ */
@@ -89,9 +88,6 @@ a
   letter-spacing: 0.1em !important
 
 // images
-.imgFill
-  background-size: cover
-  background-position: center center
 .pic-block
   img
     display: block
@@ -148,11 +144,9 @@ img.svg
   align-items: center !important
 
 // buttons
-.btn
-  .btn-inner
-    position: relative
-    z-index: 1
-
+.btn-inner
+  position: relative
+  z-index: 1
 .btn-mBlue-line
   border: 1px solid rgba($main-blue, .5)
   color: $main-blue
@@ -163,7 +157,6 @@ img.svg
   +media-hover-style
     background-color: $main-blue
     color: #ffffff
-
 .btn-silver
   position: relative
   padding: 0
@@ -204,6 +197,20 @@ img.svg
   &:active
     .btn-inner
       +translateY(2px)
+.btn-blue
+  background-color: #008AD6
+  color: #ffffff
+  +media-hover
+    +transition-property(background-color .3s ease)
+  +media-hover-style
+    background-color: #0081c8
+.btn-darkGray
+  background-color: #404040
+  color: #ffffff
+  +media-hover
+    +transition-property(background-color .3s ease)
+  +media-hover-style
+    background-color: #353535
 .btn-blueGradient, .btn-blueGradient2
   position: relative
   overflow: hidden
@@ -219,7 +226,6 @@ img.svg
     background-color: rgba(0,0,0,.15)
     +transition(opacity .3s ease)
   .btn-inner
-    position: relative
     color: #ffffff
   &.btn
     +media-hover-style
@@ -229,6 +235,79 @@ img.svg
   +v-gradient($light-blue, $main-blue)
 .btn-blueGradient2
   +v-gradient(#57affd, #506eff)
+
+// game entry
+.game-entry
+  .btn-square
+    position: relative
+    width: 80px
+    height: 80px
+    padding: 1px
+    border-radius: 10px
+    overflow: hidden
+    +v-gradient(#6f8cfe, #0048ce)
+    color: #ffffff
+    box-shadow: 0 2px 6px rgba(0,0,0,.25)
+    &::before, &::after
+      content: ''
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      display: block
+    &::before // hover border color
+      z-index: 0
+      +v-gradient(#becbd8, #98b9d9)
+      opacity: 0
+      will-change: opacity
+    &::after // overlay
+      z-index: 2
+      +v-gradient(rgba(255,255,255,.1), rgba(0,0,0,.15))
+    .btn-inner
+      +flexbox
+      +justify-content-center
+      +align-items-center
+      width: 78px
+      height: 78px
+      background-color: #0073e1
+      padding: 10px
+      border-radius: 10px
+      box-shadow: inset 0 1px 1px rgba(255,255,255,.5)
+    .icon-block
+      position: relative
+      img
+        &.for-display
+          mix-blend-mode: screen
+        &.for-hover
+          position: absolute
+          top: 0
+          left: 0
+          opacity: 0
+  .txt
+    color: #4D4D4D
+  a
+    +media-hover
+      .btn-square
+        &::before
+          +transition(opacity .3s ease)
+        .btn-inner
+          +transition(background-color .3s ease)
+        .icon-block
+          img
+            +transition(opacity .3s ease)
+    +media-hover-style
+      .btn-square
+        &::before
+          opacity: 1
+        .btn-inner
+          background-color: #ffffff
+        .icon-block
+          img
+            &.for-display
+              opacity: 0
+            &.for-hover
+              opacity: 1
 
 // msg bubble
 .msg-bubble
