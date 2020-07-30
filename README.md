@@ -214,17 +214,35 @@ background-image: url('~assets/path/to/demo.jpg')
 HTML 寫法
 ```html
 <img-fill :src="require('@/assets/path/to/demo.jpg')"></img-fill>
-<img-fill :src="require('~/assets/path/to/demo.jpg')" :hasImg="true"></img-fill>
+<img-fill class="my-class" :src="require('~/assets/path/to/demo.jpg')" :hasImg="true"></img-fill>
 ```
 
 Pug 寫法
 ```pug
 img-fill(:src="require('@/assets/path/to/demo.jpg')")
-img-fill(:src="require('" + imgUrl + "')" hasImg=true)
+img-fill.my-class(:src="require('" + imgUrl + "')" hasImg=true)
 ```
 
+渲染結果
+```html
+<div class="imgFill my-class" style="background-image: url('/_nuxt/assets/path/to/demo.jpg')">
+  <!-- 若 hasImg="true" 才會產出 -->
+  <img src="/_nuxt/assets/path/to/demo.jpg" alt="" />
+</div>
+```
+
+預設樣式（可至 `components/ImgFill.vue` 修改或另寫樣式覆蓋）
+```css
+.imgFill {
+  background-size: cover;
+  background-position: center center;
+}
+.imgFill img {
+  display: none;
+}
+```
 ### img-svg
-> 取代img轉svg（全站svg需從plugins/global.js引入）
+> 取代img轉svg，使用[svg-sprite-loader](https://github.com/JetBrains/svg-sprite-loader)（全站svg需從 `plugins/global.js` 引入）
 
 |  屬性  |   類型  |  預設值  | 說明       |
 |:------:|:-------:|:-------:|:----------|
@@ -242,6 +260,10 @@ Pug 寫法
 img-svg(name="my-icon")
 ```
 
+渲染結果
+```html
+<svg><use xlink:href="#my-icon"></use></svg>
+```
 &nbsp;
 
 ## 線上文檔
