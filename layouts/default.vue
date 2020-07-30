@@ -1,9 +1,9 @@
 <template lang="pug">
   .wp
-    <site-header :webname="$t('website.title')" />
-    <Nuxt />
-    <site-footer />
-    <side-menu v-on:scroll.native="sideMenuOnScroll()" />
+    site-header(:webname="$t('website.title')")
+    Nuxt
+    site-footer
+    side-menu(v-on:scroll.native="sideMenuOnScroll()")
 </template>
 
 <script>

@@ -1,3 +1,7 @@
+<template lang="pug">
+  .imgFill(:style="{'background-image': 'url(' + src + ')'}")
+    img(v-if="hasImg" :src="src" alt="")
+</template>
 <script>
 export default {
   props: {
@@ -9,26 +13,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-  render (h) {
-    return h(
-      'div',
-      { 
-        class: { 'imgFill': true },
-        style: {
-          backgroundImage: 'url(' + this.src + ')'
-        }
-      },
-      [
-        this.hasImg ?
-        h('img', {
-          attrs: {
-            src: this.src
-          }
-        })
-        : null
-      ]
-    )
   }
 }
 </script>

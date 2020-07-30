@@ -42,8 +42,9 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    { src: '@/plugins/bootstrap.js', mode: 'client', ssr: false },
-    { src: '@/plugins/global.js', mode: 'client', ssr: false }
+    { src: '@/plugins/global.js', ssr: true },
+    { src: '@/plugins/jquery.js', mode: 'client', ssr: false },
+    { src: '@/plugins/bootstrap.js', mode: 'client', ssr: false }
   ],
   /*
   ** Auto import components

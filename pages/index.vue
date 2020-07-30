@@ -11,9 +11,10 @@ Vue.use(getAwesomeSwiper(SwiperClass))
 const { Swiper, SwiperSlide } = getAwesomeSwiper(SwiperClass)
 import 'swiper/swiper-bundle.css'
 
+
 export default {
   components: {
-    'marquee-text': () => process.client ? import('@/components/Marquee.vue') : null,
+    'marquee-text': () => process.client ? import('@/components/Marquee.vue') : null
   },
   data() {
     return {

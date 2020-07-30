@@ -7,8 +7,9 @@
 1. [專案架構](#專案架構)
 2. [npm指令](#npm指令)
 3. [專案設定](#專案設定)
-4. [已知問題](#已知問題)
-5. [線上文檔](#線上文檔)
+4. [路徑寫法](#路徑寫法)
+5. [公用組件](#公用組件)
+6. [線上文檔](#線上文檔)
 
 &nbsp;
 
@@ -58,7 +59,8 @@ $ npm run generate
 ## 專案設定
 > nuxt.config.js
 ```javascript
-import webpack from 'webpack'; // 載入webpack
+import webpack from 'webpack' // 載入webpack
+import SpriteLoaderPlugin from 'svg-sprite-loader/plugin' // SVG 套件
 
 export default {
   mode: 'universal',
@@ -81,7 +83,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/...' }
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/...' } // 也可從CSS引入
     ],
   },
   /*
@@ -94,9 +96,9 @@ export default {
   /*
    * 載入套件
    * 個別組件使用之套件可在.vue裡設定
-   * ssr預設為true（前後端都做渲染）
    */
   plugins: [
+    { src: '@/plugins/global.js', ssr: true }, // 引入公用組件，ssr須為true
     { src: '@/plugins/jquery.js', ssr: false },
     { src: '@/plugins/bootstrap.js', ssr: false }
   ],
@@ -153,6 +155,20 @@ export default {
   /* 生產模式 */
   build: {
     extractCSS: true, // 將CSS打包為獨立.css檔，否則會直接生成<style>標籤
+    extend(config, ctx) {
+      if (ctx.isDev && ctx.isClient) {
+        // svg 設定
+        const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+        svgRule.test = /\.(png|jpe?g|gif|webp)$/
+        config.module.rules.push({
+          test: /\.svg$/,
+          loader: 'svg-sprite-loader',
+          options: {
+            symbolId: '[name]'
+          }
+        })
+      }
+    },
     plugins: [
       // webpack 設定
       new webpack.ProvidePlugin({
@@ -161,6 +177,8 @@ export default {
         'window.jQuery': 'jquery',
         'window.$': 'jquery',
       }),
+      // svg 套件
+      new SpriteLoaderPlugin()
     ],
   }
 }
@@ -172,7 +190,7 @@ export default {
 ```js
 // 來源為 assets 或其他資料夾
 '@/assets/images/path/to/demo.jpg'
-'~assets/images/path/to/demo.jpg'
+'~/assets/images/path/to/demo.jpg'
 
 // 來源為 static 資料夾
 '/path/to/demo.jpg' // 不須加static
@@ -181,8 +199,48 @@ export default {
 ```css
 background-image: url('~assets/path/to/demo.jpg')
 ```
+&nbsp;
 
-## 已知問題
+## 公用組件
+### img-fill
+> 取代imgLiquid.js
+
+|  屬性  |   類型  |  預設值  | 說明           |
+|:------:|:-------:|:-------:|:----------------|
+| src    | String  | null    | 圖片連結        |
+| hasImg | Boolean | false   | 是否在div下產出圖片（同imgLiquid，圖片會被隱藏）|
+
+HTML 寫法
+```html
+<img-fill :src="require('@/assets/path/to/demo.jpg')"></img-fill>
+<img-fill :src="require('~/assets/path/to/demo.jpg')" :hasImg="true"></img-fill>
+```
+
+Pug 寫法
+```pug
+img-fill(:src="require('@/assets/path/to/demo.jpg')")
+img-fill(:src="require('" + imgUrl + "')" hasImg=true)
+```
+
+### img-svg
+> 取代img轉svg（全站svg需從plugins/global.js引入）
+
+|  屬性  |   類型  |  預設值  | 說明       |
+|:------:|:-------:|:-------:|:----------|
+| name   | String  | null    | svg檔名   |
+
+HTML 寫法
+```html
+<!-- assets/images/svg/my-icon.svg -->
+<img-svg name="my-icon"></img-svg>
+```
+
+Pug 寫法
+```pug
+//- assets/images/svg/my-icon.svg
+img-svg(name="my-icon")
+```
+
 &nbsp;
 
 ## 線上文檔
